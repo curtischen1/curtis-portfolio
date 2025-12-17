@@ -78,8 +78,8 @@ export function Timeline() {
   return (
     <section className="py-12">
       <div className="text-center mb-16">
-        <h2 className="text-gray-900 mb-2">Building My Stack</h2>
-        <p className="text-gray-600">Each brick represents a chapter in my journey</p>
+        <h2 className="text-gray-900 mb-2">Timeline</h2>
+        <p className="text-gray-600">The building blocks of my career</p>
       </div>
       
       <div className="flex flex-col items-center gap-0 max-w-4xl mx-auto">

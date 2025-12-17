@@ -49,10 +49,10 @@ export function Work() {
     <section className="py-12">
       <div className="text-center mb-12">
         <h1 
-          className="text-gray-700 mb-4"
+          className="text-gray-700 mb-4 text-5xl"
           style={{ fontFamily: 'Georgia, serif' }}
         >
-          hi, i'm nicholas
+          hey, i'm curtis
         </h1>
         
         <div className="flex items-center justify-center gap-2 text-gray-500 mb-6">
@@ -60,7 +60,7 @@ export function Work() {
         </div>
         
         <p className="text-gray-600 max-w-xl mx-auto">
-          documenting my thoughts on tech and startups
+          sharing my unfiltered perspective on tech
           <br />
           read more on{' '}
           <a href="https://medium.com/@curtischen1" target="_blank" rel="noopener noreferrer" className="text-[#ff6b35] hover:underline">

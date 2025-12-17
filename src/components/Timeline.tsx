@@ -102,16 +102,23 @@ export function Timeline() {
                 <div key={itemIndex} className="flex flex-col items-center gap-0 w-full relative">
                   {/* Main LEGO Brick */}
                   <div 
-                    className={`relative w-full transition-all duration-300 hover:-translate-y-1 cursor-pointer`}
+                    className={`relative transition-all duration-300 hover:-translate-y-1 cursor-pointer`}
                     style={{ 
                       maxWidth: '600px',
-                      marginLeft: isEven ? '0' : 'auto',
-                      marginRight: isEven ? 'auto' : '0',
+                      width: '600px',
                       animationDelay: `${currentBrickIndex * 0.1}s`,
                       opacity: 0,
                       animation: 'fadeInUp 0.6s ease forwards',
                       animationFillMode: 'forwards',
-                      transform: isEven ? 'translateX(50px)' : 'translateX(175px)'
+                      // Grey block is 250px wide, centered in container
+                      // Grey block left edge: calc(50% - 125px)
+                      // Grey block right edge: calc(50% + 125px)
+                      // For left askew (even): align RIGHT edge of brick with RIGHT edge of grey block
+                      // For right askew (odd): align LEFT edge of brick with LEFT edge of grey block
+                      marginLeft: isEven 
+                        ? 'calc(50% + 125px - 600px)'  // Left askew: right edge aligns with grey block right edge
+                        : 'calc(50% - 125px)',          // Right askew: left edge aligns with grey block left edge
+                      marginRight: 'auto'
                     }}
                   >
                     {/* LEGO Studs on top - 8 pegs */}

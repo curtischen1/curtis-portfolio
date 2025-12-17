@@ -187,7 +187,7 @@ export function Timeline() {
                           <span className="font-medium">{item.role} </span>
                           {item.company && (
                             <span className="font-bold bg-white/20 px-2 py-1 rounded">
-                              @ {item.company}
+                              {item.company}
                             </span>
                           )}
                           {item.description && (

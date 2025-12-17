@@ -1,12 +1,19 @@
 import { Linkedin, Instagram } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
+type Photo = {
+  image: string;
+  caption: string;
+  rotation: number;
+  isCustomImage: boolean;
+};
+
 export function About() {
-  const photos = [
-    { image: 'person skiing mountain', caption: 'happy place 😊', rotation: 5 },
-    { image: 'mountain hiking yosemite', caption: 'weekend adventures 🌲', rotation: -3 },
-    { image: 'person filming video', caption: 'filming cinematic videos', rotation: 4 },
-    { image: 'person eating ramen', caption: 'big eater/lover', rotation: -2 }
+  const photos: Photo[] = [
+    { image: 'person skiing mountain', caption: 'happy place 😊', rotation: 5, isCustomImage: false },
+    { image: '/assets/elephant-photo.jpg', caption: 'international relations🌍', rotation: -3, isCustomImage: true },
+    { image: 'person filming video', caption: 'filming cinematic videos', rotation: 4, isCustomImage: false },
+    { image: 'person eating ramen', caption: 'big eater/lover', rotation: -2, isCustomImage: false }
   ];
 
   return (
@@ -78,12 +85,13 @@ export function About() {
                 transformOrigin: 'center center'
               }}
             >
-              <div className="aspect-square bg-gray-100 mb-2">
+              <div className="aspect-square bg-gray-100 mb-2 overflow-hidden">
                 <ImageWithFallback
-                  src={`https://via.placeholder.com/300x300`}
+                  src={photo.isCustomImage ? photo.image : `https://via.placeholder.com/300x300`}
                   alt={photo.caption}
                   className="w-full h-full object-cover"
-                  unsplashQuery={photo.image}
+                  unsplashQuery={photo.isCustomImage ? undefined : photo.image}
+                  style={{ objectPosition: 'center' }}
                 />
               </div>
               <p className="text-center text-gray-600 italic" style={{ fontFamily: 'Georgia, serif' }}>

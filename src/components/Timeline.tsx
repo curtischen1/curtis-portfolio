@@ -6,14 +6,26 @@ export function Timeline() {
         {
           role: 'Incoming Associate Product Manager at',
           company: 'Salesforce',
-          description: '— joining the 2026 cohort',
-          color: 'red'
+          description: '— AI B2B SaaS, 2026 Cohort',
+          color: 'blue'
         },
         {
           role: 'Program Manager at',
           company: 'Amazon',
-          description: '— AI product development, user research with site managers, data analysis across 100K+ fulfillment records',
-          color: 'blue'
+          description: '— built internal AI product to optimize labor planning, projected to save millions',
+          color: 'yellow'
+        },
+        {
+          role: 'President',
+          company: 'AI Student Collective',
+          description: '— building the biggest AI community @ UC Davis; helping students build and use AI effectively',
+          color: 'red'
+        },
+        {
+          role: 'Founding Vice President at',
+          company: 'Product Space',
+          description: '— teaching students about product and how to break into the industry',
+          color: 'purple'
         }
       ]
     },
@@ -21,28 +33,22 @@ export function Timeline() {
       year: '2024',
       items: [
         {
-          role: 'President at',
-          company: 'AI Student Collective',
-          description: '— grew organization 5x to 100, scaled programs to 1500+ students quarterly, drove 60% engagement increase',
-          color: 'purple'
+          role: 'Product at',
+          company: 'Knowhiz',
+          description: '— edtech; shaped product experience and led go-to-market strategy',
+          color: 'blue'
         },
         {
-          role: 'Product Manager at',
+          role: 'Product at',
           company: 'Telos',
-          description: '— built Monthly Wrapped feature 0-to-1, redesigned onboarding (35% conversion increase), guided product strategy pivot',
+          description: '— healthtech; improved user experience and built features to drive engagement',
           color: 'green'
         },
         {
-          role: 'AI Business Fellow at',
-          company: 'Perplexity',
-          description: '— inaugural cohort, enterprise AI integration strategies and industry applications',
-          color: 'yellow'
-        },
-        {
-          role: 'Campus Leader, Growth at',
+          role: 'Campus Leader at',
           company: 'Notion',
-          description: '— executed GTM strategy with 90% conversion, drove 250+ users through personalized use cases',
-          color: 'blue'
+          description: '— led growth at UCD, helping hundreds of students discover and adopt my favorite productivity tool through personalized use cases',
+          color: 'red'
         }
       ]
     },
@@ -52,14 +58,8 @@ export function Timeline() {
         {
           role: 'Senator at',
           company: 'ASUCD',
-          description: '— allocated $20M budget across 26 business units, championed lighting project impacting 31,000+ students',
-          color: 'red'
-        },
-        {
-          role: 'Founding Vice President at',
-          company: 'Product Space',
-          description: '— mentored 8 student PM teams, grew membership to 40 through strategic programming',
-          color: 'purple'
+          description: 'learned product before knowing what product was; problem discovery, user research, CX collaboration on initiatives benefiting 31,000+ students',
+          color: 'yellow'
         }
       ]
     }

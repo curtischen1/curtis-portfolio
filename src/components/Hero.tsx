@@ -21,7 +21,7 @@ export function Hero() {
           uc davis
         </a>
         <br />
-        building product and legos
+        building products and legos
       </p>
     </section>
   );

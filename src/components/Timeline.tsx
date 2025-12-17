@@ -4,10 +4,16 @@ export function Timeline() {
       year: '2025',
       items: [
         {
-          role: 'currently building',
-          company: 'substack',
-          description: 'Product at TIKTOK — built AI generative models and unsupervised prompt engineering research',
+          role: 'Incoming Associate Product Manager at',
+          company: 'Salesforce',
+          description: '— joining the 2026 cohort',
           color: 'red'
+        },
+        {
+          role: 'Program Manager at',
+          company: 'Amazon',
+          description: '— AI product development, user research with site managers, data analysis across 100K+ fulfillment records',
+          color: 'blue'
         }
       ]
     },
@@ -15,22 +21,28 @@ export function Timeline() {
       year: '2024',
       items: [
         {
-          role: 'AI Product Analyst at',
-          company: 'Remade',
-          description: '— edtech unicorn, designed user experiences and AI usability',
-          color: 'blue'
+          role: 'President at',
+          company: 'AI Student Collective',
+          description: '— grew organization 5x to 100, scaled programs to 1500+ students quarterly, drove 60% engagement increase',
+          color: 'purple'
         },
         {
-          role: 'Won Man + Global Hackathon',
-          company: '',
-          description: 'Top 1 of 850+ created a social media algorithm to reduce addiction',
+          role: 'Product Manager at',
+          company: 'Telos',
+          description: '— built Monthly Wrapped feature 0-to-1, redesigned onboarding (35% conversion increase), guided product strategy pivot',
+          color: 'green'
+        },
+        {
+          role: 'AI Business Fellow at',
+          company: 'Perplexity',
+          description: '— inaugural cohort, enterprise AI integration strategies and industry applications',
           color: 'yellow'
         },
         {
-          role: 'Built a web-app to',
-          company: '',
-          description: 'simulate ai campaigns with AI agents, recognized by execs @ Meta, Neural, and more',
-          color: 'green'
+          role: 'Campus Leader, Growth at',
+          company: 'Notion',
+          description: '— executed GTM strategy with 90% conversion, drove 250+ users through personalized use cases',
+          color: 'blue'
         }
       ]
     },
@@ -38,28 +50,16 @@ export function Timeline() {
       year: '2023',
       items: [
         {
-          role: 'Product at',
-          company: 'Interv. Kickback',
-          description: '— helped Barry Seahunt figure out what to build lol',
-          color: 'purple'
-        },
-        {
-          role: 'PM Intern at',
-          company: 'Stripe',
-          description: '— own launch strategy < finished pm ot training too',
+          role: 'Senator at',
+          company: 'ASUCD',
+          description: '— allocated $20M budget across 26 business units, championed lighting project impacting 31,000+ students',
           color: 'red'
         },
         {
-          role: 'Business Development Intern at',
-          company: 'RAND',
-          description: '— grown marketing strategies + exceeded 60k+ clients',
-          color: 'blue'
-        },
-        {
-          role: 'Taught a computer aided design course to',
-          company: '',
-          description: '25+ elementary students, formed complex topics into bite-sized analogies',
-          color: 'yellow'
+          role: 'Founding Vice President at',
+          company: 'Product Space',
+          description: '— mentored 8 student PM teams, grew membership to 40 through strategic programming',
+          color: 'purple'
         }
       ]
     }

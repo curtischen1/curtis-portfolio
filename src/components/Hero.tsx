@@ -21,11 +21,7 @@ export function Hero() {
           uc davis
         </a>
         <br />
-        building{' '}
-        <a href="#" className="text-[#ff6b35] hover:underline">
-          substack
-        </a>
-        {' '}— an ai productivity platform for students
+        building product and legos
       </p>
     </section>
   );

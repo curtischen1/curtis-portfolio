@@ -16,9 +16,9 @@ export function Timeline() {
           color: 'yellow'
         },
         {
-          role: 'President',
+          role: 'President at',
           company: 'AI Student Collective',
-          description: '— building the biggest AI community @ UC Davis; helping students build and use AI effectively',
+          description: '— building the biggest AI community at UC Davis; helping students build and use AI effectively',
           color: 'red'
         },
         {
@@ -58,7 +58,7 @@ export function Timeline() {
         {
           role: 'Senator at',
           company: 'ASUCD',
-          description: 'learned product before knowing what product was; problem discovery, user research, CX collaboration on initiatives benefiting 31,000+ students',
+          description: '— learned product before knowing what product was; problem discovery, user research, CX collaboration on initiatives benefiting 31,000+ students',
           color: 'yellow'
         }
       ]

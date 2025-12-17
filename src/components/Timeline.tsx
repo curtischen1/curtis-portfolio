@@ -90,13 +90,21 @@ export function Timeline() {
               const isEven = currentBrickIndex % 2 === 0;
               const colors = colorMap[item.color as keyof typeof colorMap];
               const isLastItem = yearIndex === timelineData.length - 1 && itemIndex === yearData.items.length - 1;
+              const isFirstItem = currentBrickIndex === 0;
               const hasConnectorBelow = !isLastItem;
               
               // Calculate which pegs are covered based on brick position
               // Grey brick stays centered (250px wide, covers center of container)
               // If brick is left (isEven), the RIGHT side pegs (5,6,7,8) are over the grey brick
               // If brick is right (!isEven), the LEFT side pegs (1,2,3,4) are over the grey brick
-              const pegsToHide = isEven ? [5, 6, 7, 8] : [1, 2, 3, 4];
+              // First brick (red): show all 8 pegs
+              // Last brick (yellow): show only 4 pegs (the ones not touching grey)
+              // All other bricks: show 4 pegs (the ones not touching grey)
+              const pegsToHide = isFirstItem 
+                ? []  // First brick shows all 8 pegs
+                : (isEven ? [5, 6, 7, 8] : [1, 2, 3, 4]);  // Other bricks hide 4 pegs
+              
+              const visiblePegs = 8 - pegsToHide.length;
               
               return (
                 <div key={itemIndex} className="flex flex-col items-center gap-0 w-full relative">
@@ -104,8 +112,7 @@ export function Timeline() {
                   <div 
                     className={`relative transition-all duration-300 hover:-translate-y-1 cursor-pointer`}
                     style={{ 
-                      maxWidth: '600px',
-                      width: '600px',
+                      width: '500px', // Double the grey block width (250px * 2)
                       animationDelay: `${currentBrickIndex * 0.1}s`,
                       opacity: 0,
                       animation: 'fadeInUp 0.6s ease forwards',
@@ -116,31 +123,39 @@ export function Timeline() {
                       // For left askew (even): align RIGHT edge of brick with RIGHT edge of grey block
                       // For right askew (odd): align LEFT edge of brick with LEFT edge of grey block
                       marginLeft: isEven 
-                        ? 'calc(50% + 125px - 600px)'  // Left askew: right edge aligns with grey block right edge
+                        ? 'calc(50% + 125px - 500px)'  // Left askew: right edge aligns with grey block right edge
                         : 'calc(50% - 125px)',          // Right askew: left edge aligns with grey block left edge
                       marginRight: 'auto'
                     }}
                   >
-                    {/* LEGO Studs on top - 8 pegs */}
-                    <div className="flex justify-evenly px-8 mb-0 relative z-10">
+                    {/* LEGO Studs on top - evenly spaced based on visible pegs */}
+                    <div 
+                      className="relative mb-0 z-10"
+                      style={{
+                        paddingLeft: '40px',
+                        paddingRight: '40px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'flex-start'
+                      }}
+                    >
                       {[1, 2, 3, 4, 5, 6, 7, 8].map((stud) => {
-                        // IF peg is touching grey brick, THEN hide it
-                        const isTouchingGreyBrick = hasConnectorBelow && pegsToHide.includes(stud);
-                        const showPeg = !isTouchingGreyBrick;
+                        const showPeg = !pegsToHide.includes(stud);
                         
                         return (
                           <div
                             key={stud}
-                            className="relative"
+                            className="relative flex-shrink-0"
                             style={{
                               width: '28px',
                               height: showPeg ? '16px' : '0px',
-                              backgroundColor: colors.bg,
+                              backgroundColor: showPeg ? colors.bg : 'transparent',
                               border: showPeg ? `3px solid ${colors.border}` : 'none',
                               borderBottom: 'none',
-                              borderRadius: '4px 4px 0 0',
+                              borderRadius: showPeg ? '4px 4px 0 0' : '0',
                               opacity: showPeg ? 1 : 0,
-                              transition: 'all 0.3s ease'
+                              transition: 'all 0.3s ease',
+                              pointerEvents: showPeg ? 'auto' : 'none'
                             }}
                           >
                             {showPeg && (

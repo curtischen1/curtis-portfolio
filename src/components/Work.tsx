@@ -48,12 +48,19 @@ export function Work() {
   return (
     <section className="py-12">
       <div className="text-center mb-12">
-        <h1 
-          className="text-gray-700 mb-4 text-5xl"
-          style={{ fontFamily: 'Georgia, serif' }}
-        >
-          hey, i'm curtis
-        </h1>
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <img
+            src="/assets/my-notion-face-portrait.png"
+            alt="Curtis Portrait"
+            className="w-20 h-20 rounded-full object-cover"
+          />
+          <h1
+            className="text-gray-700 text-5xl"
+            style={{ fontFamily: 'Georgia, serif' }}
+          >
+            hey, i'm curtis
+          </h1>
+        </div>
         
         <div className="flex items-center justify-center gap-2 text-gray-500 mb-6">
           <span>📍 san francisco, ca</span>

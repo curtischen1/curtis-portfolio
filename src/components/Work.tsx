@@ -50,7 +50,7 @@ export function Work() {
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-4">
           <h1
-            className="text-gray-700 text-5xl"
+            className="text-gray-700 text-5xl whitespace-nowrap"
             style={{ fontFamily: 'Georgia, serif' }}
           >
             hey, i'm curtis
@@ -58,7 +58,7 @@ export function Work() {
           <img
             src="/assets/my-notion-face-portrait.png"
             alt="Curtis Portrait"
-            className="w-12 h-12 rounded-full object-cover"
+            className="w-6 h-6 rounded-full object-cover flex-shrink-0"
           />
         </div>
         

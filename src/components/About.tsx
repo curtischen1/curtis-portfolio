@@ -13,7 +13,7 @@ export function About() {
     { image: 'person skiing mountain', caption: 'happy place 😊', rotation: 5, isCustomImage: false },
     { image: '/assets/elephant-photo.jpg', caption: 'international relations🌍', rotation: -3, isCustomImage: true },
     { image: 'person filming video', caption: 'filming cinematic videos', rotation: 4, isCustomImage: false },
-    { image: '/assets/matcha-photo.jpg', caption: 'matcha hunting🍵', rotation: -2, isCustomImage: true }
+    { image: '/assets/matcha-photo.JPG', caption: 'matcha hunting🍵', rotation: 3, isCustomImage: true }
   ];
 
   return (

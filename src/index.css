@@ -818,6 +818,11 @@
     line-height: var(--tw-leading, var(--text-5xl--line-height));
   }
 
+  .portrait-icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
   .text-6xl {
     font-size: var(--text-6xl);
     line-height: var(--tw-leading, var(--text-6xl--line-height));

@@ -50,7 +50,7 @@ export function Work() {
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-4">
           <h1
-            className="text-gray-700 text-5xl whitespace-nowrap"
+            className="text-gray-700 text-6xl whitespace-nowrap"
             style={{ fontFamily: 'Georgia, serif' }}
           >
             hey, i'm curtis

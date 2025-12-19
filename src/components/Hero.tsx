@@ -6,7 +6,7 @@ export function Hero() {
       <div className="flex items-center justify-center gap-3 mb-4">
         <h1
           className="text-gray-700 whitespace-nowrap"
-          style={{ fontFamily: 'Georgia, serif', fontSize: '48px' }}
+          style={{ fontFamily: 'Georgia, serif', fontSize: '72px', color: 'red' }}
         >
           hey, i'm curtis
         </h1>

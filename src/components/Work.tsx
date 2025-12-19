@@ -51,7 +51,7 @@ export function Work() {
         <div className="flex items-center justify-center gap-3 mb-4">
           <h1
             className="text-gray-700 whitespace-nowrap"
-            style={{ fontFamily: 'Georgia, serif', fontSize: '72px', color: 'red' }}
+            style={{ fontFamily: 'Georgia, serif', fontSize: '60px' }}
           >
             hey, i'm curtis
           </h1>

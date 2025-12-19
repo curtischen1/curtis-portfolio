@@ -13,7 +13,8 @@ export function Hero() {
         <img
           src="/assets/my-notion-face-portrait.png"
           alt="Curtis Portrait"
-          className="w-6 h-6 rounded-full object-cover flex-shrink-0"
+          className="rounded-full object-cover flex-shrink-0"
+          style={{ width: '24px', height: '24px' }}
         />
       </div>
       

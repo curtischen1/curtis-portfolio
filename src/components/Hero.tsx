@@ -6,14 +6,15 @@ export function Hero() {
       <div className="flex items-center justify-center gap-3 mb-4">
         <h1
           className="text-gray-700 whitespace-nowrap"
-          style={{ fontFamily: 'Georgia, serif', fontSize: '72px', color: 'red' }}
+          style={{ fontFamily: 'Georgia, serif', fontSize: '60px' }}
         >
           hey, i'm curtis
         </h1>
         <img
           src="/assets/my-notion-face-portrait.png"
           alt="Curtis Portrait"
-          className="w-6 h-6 rounded-full object-cover flex-shrink-0"
+          className="rounded-full object-cover flex-shrink-0"
+          style={{ width: '24px', height: '24px' }}
         />
       </div>
       

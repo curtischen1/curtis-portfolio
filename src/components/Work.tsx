@@ -58,8 +58,7 @@ export function Work() {
           <img
             src="/assets/my-notion-face-portrait.png"
             alt="Curtis Portrait"
-            className="rounded-full object-cover flex-shrink-0"
-            style={{ width: '16px !important', height: '16px !important' }}
+            className="portrait-icon rounded-full object-cover flex-shrink-0"
           />
         </div>
         

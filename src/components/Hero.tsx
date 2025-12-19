@@ -5,8 +5,8 @@ export function Hero() {
     <section className="text-center py-12">
       <div className="flex items-center justify-center gap-3 mb-4">
         <h1
-          className="text-gray-700 text-5xl whitespace-nowrap"
-          style={{ fontFamily: 'Georgia, serif' }}
+          className="text-gray-700 whitespace-nowrap"
+          style={{ fontFamily: 'Georgia, serif', fontSize: '48px' }}
         >
           hey, i'm curtis
         </h1>

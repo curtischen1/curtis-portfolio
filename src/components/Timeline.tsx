@@ -66,11 +66,11 @@ export function Timeline() {
   ];
 
   const colorMap = {
-    red: { bg: '#E74C3C', border: '#C0392B', stud: '#C0392B' },
-    blue: { bg: '#3498DB', border: '#2980B9', stud: '#2980B9' },
-    yellow: { bg: '#F39C12', border: '#D68910', stud: '#D68910' },
-    green: { bg: '#1ABC9C', border: '#16A085', stud: '#16A085' },
-    purple: { bg: '#9b59b6', border: '#8e44ad', stud: '#8e44ad' }
+    red: { bg: '#FFFFFF', border: '#000000', stud: '#000000' },
+    blue: { bg: '#FFFFFF', border: '#000000', stud: '#000000' },
+    yellow: { bg: '#FFFFFF', border: '#000000', stud: '#000000' },
+    green: { bg: '#FFFFFF', border: '#000000', stud: '#000000' },
+    purple: { bg: '#FFFFFF', border: '#000000', stud: '#000000' }
   };
 
   let brickCount = 0;
@@ -149,8 +149,8 @@ export function Timeline() {
                             style={{
                               width: '28px',
                               height: showPeg ? '16px' : '0px',
-                              backgroundColor: showPeg ? colors.bg : 'transparent',
-                              border: showPeg ? `3px solid ${colors.border}` : 'none',
+                              backgroundColor: showPeg ? '#FFFFFF' : 'transparent',
+                              border: showPeg ? `4px solid #000000` : 'none',
                               borderBottom: 'none',
                               borderRadius: showPeg ? '4px 4px 0 0' : '0',
                               opacity: showPeg ? 1 : 0,
@@ -161,7 +161,7 @@ export function Timeline() {
                             {showPeg && (
                               <div
                                 className="absolute inset-x-0 top-0 h-1"
-                                style={{ backgroundColor: colors.stud }}
+                                style={{ backgroundColor: '#000000' }}
                               ></div>
                             )}
                           </div>
@@ -173,20 +173,19 @@ export function Timeline() {
                     <div
                       className="p-8 relative"
                       style={{
-                        backgroundColor: colors.bg,
-                        border: `4px solid ${colors.border}`,
-                        borderTop: `3px solid ${colors.border}`,
-                        boxShadow: '8px 8px 0 rgba(0, 0, 0, 0.2)'
+                        backgroundColor: '#FFFFFF',
+                        border: `4px solid #000000`,
+                        borderTop: `4px solid #000000`
                       }}
                     >
-                      <div className="relative z-10 text-white">
+                      <div className="relative z-10 text-gray-900">
                         <div className="text-xs font-bold uppercase tracking-wider mb-2 opacity-90">
                           {yearData.year}
                         </div>
                         <div className="leading-relaxed">
                           <span className="font-medium">{item.role} </span>
                           {item.company && (
-                            <span className="font-bold bg-white/20 px-2 py-1 rounded">
+                            <span className="font-bold px-2 py-1 rounded border-2 border-gray-900">
                               {item.company}
                             </span>
                           )}
@@ -197,9 +196,9 @@ export function Timeline() {
                       </div>
 
                       {/* Bottom edge highlight */}
-                      <div 
+                      <div
                         className="absolute bottom-0 left-0 right-0 h-2"
-                        style={{ backgroundColor: colors.stud }}
+                        style={{ backgroundColor: '#000000' }}
                       ></div>
                     </div>
                   </div>
@@ -222,9 +221,8 @@ export function Timeline() {
                         style={{
                           width: '100%',
                           height: '50px',
-                          backgroundColor: '#95A5A6',
-                          border: '3px solid #7F8C8D',
-                          boxShadow: '4px 4px 0 rgba(0, 0, 0, 0.15)'
+                          backgroundColor: '#FFFFFF',
+                          border: '4px solid #000000'
                         }}
                       ></div>
                     </div>

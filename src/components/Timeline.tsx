@@ -178,7 +178,8 @@ export function Timeline() {
                       style={{
                         backgroundColor: '#faf8f3',
                         border: `4px solid #000000`,
-                        borderTop: `4px solid #000000`
+                        // Thinner top border for blocks that touch the one above (no connector)
+                        borderTop: currentBrickIndex > 0 && (currentBrickIndex !== 1 && currentBrickIndex !== 4) ? `2px solid #000000` : `4px solid #000000`
                       }}
                     >
                       <div className="relative z-10 text-gray-900">

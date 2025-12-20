@@ -91,7 +91,8 @@ export function Timeline() {
               const colors = colorMap[item.color as keyof typeof colorMap];
               const isLastItem = yearIndex === timelineData.length - 1 && itemIndex === yearData.items.length - 1;
               const isFirstItem = currentBrickIndex === 0;
-              const hasConnectorBelow = !isLastItem;
+              // Only show connectors after Salesforce (brick 0) and Product Space (brick 3)
+              const hasConnectorBelow = currentBrickIndex === 0 || currentBrickIndex === 3;
               
               // Calculate which pegs are covered based on brick position
               // Grey brick stays centered (250px wide, covers center of container)

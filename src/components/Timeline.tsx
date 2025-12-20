@@ -66,11 +66,11 @@ export function Timeline() {
   ];
 
   const colorMap = {
-    red: { bg: '#FFFFFF', border: '#000000', stud: '#000000' },
-    blue: { bg: '#FFFFFF', border: '#000000', stud: '#000000' },
-    yellow: { bg: '#FFFFFF', border: '#000000', stud: '#000000' },
-    green: { bg: '#FFFFFF', border: '#000000', stud: '#000000' },
-    purple: { bg: '#FFFFFF', border: '#000000', stud: '#000000' }
+    red: { bg: '#faf8f3', border: '#000000', stud: '#000000' },
+    blue: { bg: '#faf8f3', border: '#000000', stud: '#000000' },
+    yellow: { bg: '#faf8f3', border: '#000000', stud: '#000000' },
+    green: { bg: '#faf8f3', border: '#000000', stud: '#000000' },
+    purple: { bg: '#faf8f3', border: '#000000', stud: '#000000' }
   };
 
   let brickCount = 0;
@@ -149,7 +149,7 @@ export function Timeline() {
                             style={{
                               width: '28px',
                               height: showPeg ? '16px' : '0px',
-                              backgroundColor: showPeg ? '#FFFFFF' : 'transparent',
+                              backgroundColor: showPeg ? '#faf8f3' : 'transparent',
                               border: showPeg ? `4px solid #000000` : 'none',
                               borderBottom: 'none',
                               borderRadius: showPeg ? '4px 4px 0 0' : '0',
@@ -173,7 +173,7 @@ export function Timeline() {
                     <div
                       className="p-8 relative"
                       style={{
-                        backgroundColor: '#FFFFFF',
+                        backgroundColor: '#faf8f3',
                         border: `4px solid #000000`,
                         borderTop: `4px solid #000000`
                       }}
@@ -221,7 +221,7 @@ export function Timeline() {
                         style={{
                           width: '100%',
                           height: '50px',
-                          backgroundColor: '#FFFFFF',
+                          backgroundColor: '#faf8f3',
                           border: '4px solid #000000'
                         }}
                       ></div>

@@ -177,9 +177,12 @@ export function Timeline() {
                       className="p-8 relative"
                       style={{
                         backgroundColor: '#faf8f3',
-                        border: `4px solid #000000`,
-                        // Thinner top border for blocks that touch the one above (no connector)
-                        borderTop: currentBrickIndex > 0 && (currentBrickIndex !== 1 && currentBrickIndex !== 4) ? `2px solid #000000` : `4px solid #000000`
+                        borderLeft: `4px solid #000000`,
+                        borderRight: `4px solid #000000`,
+                        // No bottom border for blocks with something below (connector or another block)
+                        borderBottom: isLastItem ? `4px solid #000000` : `0`,
+                        // 4px top border for all blocks
+                        borderTop: `4px solid #000000`
                       }}
                     >
                       <div className="relative z-10 text-gray-900">
@@ -198,12 +201,6 @@ export function Timeline() {
                           )}
                         </div>
                       </div>
-
-                      {/* Bottom edge highlight */}
-                      <div
-                        className="absolute bottom-0 left-0 right-0 h-2"
-                        style={{ backgroundColor: '#000000' }}
-                      ></div>
                     </div>
                   </div>
 

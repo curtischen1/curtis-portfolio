@@ -110,14 +110,16 @@ export function Timeline() {
               return (
                 <div key={itemIndex} className="flex flex-col items-center gap-0 w-full relative">
                   {/* Main LEGO Brick */}
-                  <div 
+                  <div
                     className={`relative transition-all duration-300 hover:-translate-y-1 cursor-pointer`}
-                    style={{ 
+                    style={{
                       width: '500px', // Double the grey block width (250px * 2)
                       animationDelay: `${currentBrickIndex * 0.1}s`,
                       opacity: 0,
                       animation: 'fadeInUp 0.6s ease forwards',
                       animationFillMode: 'forwards',
+                      // Add negative margin if previous block doesn't have a connector
+                      marginTop: currentBrickIndex > 0 && (currentBrickIndex !== 1 && currentBrickIndex !== 4) ? '-16px' : '0',
                       // Grey block is 250px wide, centered in container
                       // Grey block left edge: calc(50% - 125px)
                       // Grey block right edge: calc(50% + 125px)

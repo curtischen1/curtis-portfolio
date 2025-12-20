@@ -177,12 +177,7 @@ export function Timeline() {
                       className="p-8 relative"
                       style={{
                         backgroundColor: '#faf8f3',
-                        borderLeft: `4px solid #000000`,
-                        borderRight: `4px solid #000000`,
-                        // No bottom border for blocks with something below (connector or another block)
-                        borderBottom: isLastItem ? `4px solid #000000` : `0`,
-                        // 4px top border for all blocks
-                        borderTop: `4px solid #000000`
+                        border: `4px solid #000000`
                       }}
                     >
                       <div className="relative z-10 text-gray-900">

@@ -20,20 +20,20 @@ export function About() {
     <section className="py-12">
       <div className="grid md:grid-cols-2 gap-12 items-start">
         <div>
-            <h2 
-            className="text-gray-700 mb-6"
+            <h2
+            className="text-gray-700 dark:text-gray-200 mb-6 transition-colors"
             style={{ fontFamily: 'Georgia, serif' }}
           >
             Hey, a little more <span className="text-[#ff6b35] italic">about me</span>.
           </h2>
-          
-          <div className="space-y-4 text-gray-600 leading-relaxed">
+
+          <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed transition-colors">
             <p>
-              I'm a product manager based in San Francisco, CA, studying Computer Science 
-              and Psychology @ UC Davis. I love crafting products at the intersection of AI 
+              I'm a product manager based in San Francisco, CA, studying Computer Science
+              and Psychology @ UC Davis. I love crafting products at the intersection of AI
               and human-computer interaction that feel seamless and solve real needs.
             </p>
-            
+
             <div>
               <p className="mb-2">Outside of work, <span className="text-[#ff6b35] italic">I'm currently:</span></p>
               <ul className="space-y-2 pl-4">
@@ -43,34 +43,34 @@ export function About() {
                 <li>building passion projects in the music and education space</li>
               </ul>
             </div>
-            
+
             <div>
-              <h3 className="text-gray-900 mb-2">Contacts</h3>
-              <a 
-                href="mailto:curchen@ucdavis.edu" 
+              <h3 className="text-gray-900 dark:text-gray-100 mb-2 transition-colors">Contacts</h3>
+              <a
+                href="mailto:curchen@ucdavis.edu"
                 className="text-[#ff6b35] hover:underline"
               >
                 curchen@ucdavis.edu
               </a>
-              
+
               <div className="flex items-center gap-4 mt-3">
-                <a 
-                  href="#" 
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                <a
+                  href="#"
+                  className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
-                <a 
-                  href="#" 
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                <a
+                  href="#"
+                  className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
               </div>
-              
-              <p className="text-gray-500 italic mt-2">feel free to reach out!</p>
+
+              <p className="text-gray-500 dark:text-gray-400 italic mt-2 transition-colors">feel free to reach out!</p>
             </div>
           </div>
         </div>
@@ -79,13 +79,13 @@ export function About() {
           {photos.map((photo, idx) => (
             <div
               key={idx}
-              className="bg-white p-3 shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-white dark:bg-gray-800 p-3 shadow-lg hover:shadow-xl transition-all"
               style={{
                 transform: `rotate(${photo.rotation}deg)`,
                 transformOrigin: 'center center'
               }}
             >
-              <div className="aspect-square bg-gray-100 mb-2 overflow-hidden">
+              <div className="aspect-square bg-gray-100 dark:bg-gray-700 mb-2 overflow-hidden transition-colors">
                 <ImageWithFallback
                   src={photo.isCustomImage ? photo.image : `https://via.placeholder.com/300x300`}
                   alt={photo.caption}
@@ -94,7 +94,7 @@ export function About() {
                   style={{ objectPosition: 'center' }}
                 />
               </div>
-              <p className="text-center text-gray-600 italic" style={{ fontFamily: 'Georgia, serif' }}>
+              <p className="text-center text-gray-600 dark:text-gray-300 italic transition-colors" style={{ fontFamily: 'Georgia, serif' }}>
                 {photo.caption}
               </p>
             </div>

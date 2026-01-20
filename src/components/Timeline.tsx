@@ -78,8 +78,8 @@ export function Timeline() {
   return (
     <section className="py-12">
       <div className="text-center mb-16">
-        <h2 className="text-gray-900 mb-2">Timeline</h2>
-        <p className="text-gray-600">The building blocks of my career</p>
+        <h2 className="text-gray-900 dark:text-gray-100 mb-2 transition-colors">Timeline</h2>
+        <p className="text-gray-600 dark:text-gray-300 transition-colors">The building blocks of my career</p>
       </div>
       
       <div className="flex flex-col items-center gap-0 max-w-4xl mx-auto">
@@ -144,17 +144,14 @@ export function Timeline() {
                     >
                       {[1, 2, 3, 4, 5, 6, 7, 8].map((stud) => {
                         const showPeg = !pegsToHide.includes(stud);
-                        
+
                         return (
                           <div
                             key={stud}
-                            className="relative flex-shrink-0"
+                            className={`relative flex-shrink-0 ${showPeg ? 'bg-[#faf8f3] dark:bg-gray-800 border-[4px] border-black dark:border-gray-600 border-b-0' : ''} transition-colors`}
                             style={{
                               width: '28px',
                               height: showPeg ? '16px' : '0px',
-                              backgroundColor: showPeg ? '#faf8f3' : 'transparent',
-                              border: showPeg ? `4px solid #000000` : 'none',
-                              borderBottom: 'none',
                               borderRadius: showPeg ? '4px 4px 0 0' : '0',
                               opacity: showPeg ? 1 : 0,
                               transition: 'all 0.3s ease',
@@ -163,8 +160,7 @@ export function Timeline() {
                           >
                             {showPeg && (
                               <div
-                                className="absolute inset-x-0 top-0 h-1"
-                                style={{ backgroundColor: '#000000' }}
+                                className="absolute inset-x-0 top-0 h-1 bg-black dark:bg-gray-600 transition-colors"
                               ></div>
                             )}
                           </div>
@@ -174,20 +170,16 @@ export function Timeline() {
 
                     {/* Main brick body */}
                     <div
-                      className="p-8 relative"
-                      style={{
-                        backgroundColor: '#faf8f3',
-                        border: `4px solid #000000`
-                      }}
+                      className="p-8 relative bg-[#faf8f3] dark:bg-gray-800 border-[4px] border-black dark:border-gray-600 transition-colors"
                     >
-                      <div className="relative z-10 text-gray-900">
+                      <div className="relative z-10 text-gray-900 dark:text-gray-100 transition-colors">
                         <div className="text-xs font-bold uppercase tracking-wider mb-2 opacity-90">
                           {yearData.year}
                         </div>
                         <div className="leading-relaxed">
                           <span className="font-medium">{item.role} </span>
                           {item.company && (
-                            <span className="font-bold px-2 py-1 rounded border-2 border-gray-900">
+                            <span className="font-bold px-2 py-1 rounded border-2 border-gray-900 dark:border-gray-300 transition-colors">
                               {item.company}
                             </span>
                           )}
@@ -214,11 +206,10 @@ export function Timeline() {
                     >
                       {/* Connector body */}
                       <div
+                        className="bg-[#faf8f3] dark:bg-gray-800 border-[4px] border-black dark:border-gray-600 transition-colors"
                         style={{
                           width: '100%',
-                          height: '50px',
-                          backgroundColor: '#faf8f3',
-                          border: '4px solid #000000'
+                          height: '50px'
                         }}
                       ></div>
                     </div>

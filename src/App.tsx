@@ -14,17 +14,25 @@ export default function App() {
     <div className="min-h-screen bg-[#faf8f3]">
       <Header currentPage={currentPage} onNavigate={setCurrentPage} />
       
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <main className="px-6 py-4">
         {currentPage === 'home' && (
-          <>
+          <div className="max-w-5xl mx-auto">
             <Hero />
             <Timeline />
-          </>
+          </div>
         )}
-        
-        {currentPage === 'writing' && <Work />}
-        
-        {currentPage === 'about' && <About />}
+
+        {currentPage === 'writing' && (
+          <div className="max-w-4xl mx-auto">
+            <Work />
+          </div>
+        )}
+
+        {currentPage === 'about' && (
+          <div className="max-w-4xl mx-auto">
+            <About />
+          </div>
+        )}
       </main>
     </div>
   );

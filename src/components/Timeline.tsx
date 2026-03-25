@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { SlantedUnderline } from './SlantedUnderline';
 
 const GH = "'Gloria Hallelujah', cursive";
 
@@ -148,6 +149,31 @@ export function Timeline() {
   const [animComplete, setAnimComplete] = useState(false);
   const [showLastSnapLines, setShowLastSnapLines] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const snappedBricksRef = useRef<Set<number>>(new Set());
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const audioBufferRef = useRef<AudioBuffer | null>(null);
+
+  useEffect(() => {
+    const ctx = new AudioContext();
+    audioCtxRef.current = ctx;
+    fetch('/assets/lego-click.wav')
+      .then((r) => r.arrayBuffer())
+      .then((buf) => ctx.decodeAudioData(buf))
+      .then((decoded) => { audioBufferRef.current = decoded; });
+  }, []);
+
+  function playClick() {
+    const ctx = audioCtxRef.current;
+    const buffer = audioBufferRef.current;
+    if (!ctx || !buffer) return;
+    if (ctx.state === 'suspended') ctx.resume();
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    const gain = ctx.createGain();
+    gain.gain.value = 0.3;
+    source.connect(gain).connect(ctx.destination);
+    source.start();
+  }
 
   const totalBricks     = timelineData.length;
   const containerWidth  = BRICK_WIDTH + X_OFFSET;
@@ -171,6 +197,20 @@ export function Timeline() {
 
       setScrollProgress(progress);
 
+      // Play click sound when a brick is within 3px of its snap position
+      for (let step = 0; step < totalBricks; step++) {
+        const brickIdx = REVEAL_ORDER[step];
+        if (snappedBricksRef.current.has(brickIdx)) continue;
+        const entrance = Math.max(0, Math.min(1, progress - step));
+        // entrance offset: -50 * (1 - translateProgress), where translateProgress = clamp((entrance - 0.5) * 2)
+        const translateProgress = Math.max(0, Math.min(1, (entrance - 0.5) * 2));
+        const entranceOffset = Math.abs(-50 * (1 - translateProgress));
+        if (entranceOffset <= 3 && entrance > 0) {
+          snappedBricksRef.current.add(brickIdx);
+          playClick();
+        }
+      }
+
       // Lock in as static once all bricks are fully revealed
       if (progress >= totalBricks) {
         // Lock scrolling until transition is complete
@@ -186,7 +226,7 @@ export function Timeline() {
           }
           setAnimComplete(true);
           document.body.style.overflow = '';
-        }, 1000);
+        }, 700);
       }
     };
 
@@ -289,12 +329,11 @@ export function Timeline() {
             style={{
               fontFamily: GH,
               fontSize: '72px',
-              textDecoration: 'underline',
               lineHeight: 1.1,
               marginBottom: '16px',
             }}
           >
-            Timeline
+            <SlantedUnderline>Timeline</SlantedUnderline>
           </h2>
         </div>
 

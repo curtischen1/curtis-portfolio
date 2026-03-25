@@ -4,16 +4,24 @@ import { Hero } from './components/Hero';
 import { Timeline } from './components/Timeline';
 import { Work } from './components/Work';
 import { About } from './components/About';
+import { ArticleView } from './components/Article';
+import { type Article } from './data/articles';
 
 type Page = 'home' | 'writing' | 'about';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+
+  function handleNavigate(page: Page) {
+    setCurrentPage(page);
+    setSelectedArticle(null);
+  }
 
   return (
-    <div className="min-h-screen bg-[#faf8f3]">
-      <Header currentPage={currentPage} onNavigate={setCurrentPage} />
-      
+    <div className="min-h-screen" style={{ backgroundColor: '#F1EEE1' }}>
+      <Header currentPage={currentPage} onNavigate={handleNavigate} />
+
       <main className="px-6 py-4">
         {currentPage === 'home' && (
           <div className="max-w-5xl mx-auto">
@@ -22,9 +30,18 @@ export default function App() {
           </div>
         )}
 
-        {currentPage === 'writing' && (
+        {currentPage === 'writing' && !selectedArticle && (
           <div className="max-w-4xl mx-auto">
-            <Work />
+            <Work onSelectArticle={setSelectedArticle} />
+          </div>
+        )}
+
+        {currentPage === 'writing' && selectedArticle && (
+          <div className="max-w-4xl mx-auto">
+            <ArticleView
+              article={selectedArticle}
+              onBack={() => setSelectedArticle(null)}
+            />
           </div>
         )}
 

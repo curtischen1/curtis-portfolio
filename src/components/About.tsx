@@ -1,109 +1,200 @@
-import { Linkedin, Instagram } from 'lucide-react';
-
 const GH = "'Gloria Hallelujah', cursive";
 
-const photos = [
-  { src: '/assets/curtis_senate.JPG', caption: 'senator life 🏛️', rotation: -3 },
-  { src: '/assets/elephant-photo.jpg', caption: 'international relations 🌍', rotation: 5 },
-  { src: '/assets/curtis_sing.jpg', caption: 'probably singing off key 🎤', rotation: 4 },
-  { src: '/assets/matcha-photo.JPG', caption: 'matcha hunting 🍵', rotation: -2 },
-];
+function Polaroid({
+  src,
+  caption,
+  rotation = 0,
+  width = 280,
+  imagePosition = 'center',
+}: {
+  src: string;
+  caption: string;
+  rotation?: number;
+  width?: number;
+  imagePosition?: string;
+}) {
+  return (
+    <div
+      style={{
+        backgroundColor: 'white',
+        padding: '10px 10px 28px 10px',
+        border: '3px solid black',
+        boxShadow: '3px 5px 16px rgba(0,0,0,0.18)',
+        transform: `rotate(${rotation}deg)`,
+        width: `${width}px`,
+        flexShrink: 0,
+      }}
+    >
+      <div
+        style={{
+          width: '100%',
+          aspectRatio: '1',
+          overflow: 'hidden',
+          backgroundColor: '#d0d0d0',
+          border: '3px solid black',
+        }}
+      >
+        <img
+          src={src}
+          alt={caption}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: imagePosition }}
+        />
+      </div>
+      <p
+        style={{
+          fontFamily: GH,
+          fontSize: '15px',
+          textAlign: 'center',
+          marginTop: '14px',
+          color: '#333',
+          lineHeight: 1.3,
+        }}
+      >
+        {caption}
+      </p>
+    </div>
+  );
+}
 
 export function About() {
   return (
     <section className="py-12">
-      <div className="grid md:grid-cols-2 gap-12 items-start">
-        {/* Bio column */}
-        <div>
-          <h2
-            style={{ fontFamily: GH, fontSize: '32px', lineHeight: 1.4 }}
-            className="mb-6"
+      {/* Main heading */}
+      <h1
+        style={{
+          fontFamily: GH,
+          fontSize: '72px',
+          lineHeight: 1.2,
+          marginBottom: '88px',
+          textAlign: 'center',
+        }}
+      >
+        A little more about me...
+      </h1>
+
+      {/* Section 1: Baby photo left + text right */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '64px',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginBottom: '72px',
+        }}
+      >
+        <Polaroid
+          src="/assets/baby_curtis.JPEG"
+          caption="Legos on floor not pictured"
+          rotation={-3}
+          width={270}
+          imagePosition="center calc(50% - 30px)"
+        />
+        <p
+          style={{
+            fontSize: '18px',
+            lineHeight: 1.75,
+            color: '#333',
+            maxWidth: '400px',
+          }}
+        >
+          I've always been a builder at heart. As a kid, LEGOs were how I
+          expressed myself, turning imagination into something real and tangible.
+        </p>
+      </div>
+
+      {/* Section 2: Text left + boat photo right */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '64px',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginBottom: '88px',
+        }}
+      >
+        <div style={{ maxWidth: '400px' }}>
+          <p
+            style={{
+              fontSize: '18px',
+              lineHeight: 1.75,
+              color: '#333',
+              marginBottom: '24px',
+            }}
           >
-            a little about me.
-          </h2>
-
-          <div className="space-y-4 text-gray-600 leading-relaxed">
-            <p>
-              I'm a product manager based in San Francisco, CA, studying Computer Science
-              and Psychology @ UC Davis. I love crafting products at the intersection of AI
-              and human-computer interaction that feel seamless and solve real needs.
-            </p>
-
-            <div>
-              <p className="mb-2">Outside of work, I'm currently:</p>
-              <ul className="space-y-2 pl-4 list-disc">
-                <li>embracing my inner child by building LEGOs (latest: #10302)</li>
-                <li>writing as a creative outlet to share my perspective in the tech space</li>
-                <li>traveling and learning about different cultures (recently: Barcelona, Tunisia, France)</li>
-                <li>building passion projects in the music and education space</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3
-                style={{ fontFamily: GH, fontSize: '20px' }}
-                className="mb-2"
-              >
-                Contacts
-              </h3>
-              <a
-                href="mailto:curchen@ucdavis.edu"
-                className="hover:underline"
-                style={{ color: '#333' }}
-              >
-                curchen@ucdavis.edu
-              </a>
-
-              <div className="flex items-center gap-4 mt-3">
-                <a
-                  href="https://linkedin.com/in/curtischen1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
-              </div>
-
-              <p className="text-gray-500 italic mt-2">feel free to reach out!</p>
-            </div>
-          </div>
+            Along the way I've been on a couple side quests: trained as a monk,
+            sang in a choir, ran for student government, explored the world. I've
+            always been drawn to new experiences and the different ways people
+            create and connect.
+          </p>
+          <p style={{ fontSize: '18px', lineHeight: 1.75, color: '#333' }}>
+            Product lives at the intersection of creativity and innovation — the
+            one place that lets me keep building, keep imagining, and actually
+            make things that matter.
+          </p>
         </div>
+        <Polaroid
+          src="/assets/curtis_boat.jpg"
+          caption="back to my roots 🇲🇲"
+          rotation={4}
+          width={270}
+          imagePosition="calc(50% - 30px) center"
+        />
+      </div>
 
-        {/* Polaroid grid */}
-        <div className="grid grid-cols-2 gap-6">
-          {photos.map((photo, idx) => (
-            <div
-              key={idx}
-              className="bg-white p-3 shadow-lg hover:shadow-xl transition-shadow"
-              style={{
-                transform: `rotate(${photo.rotation}deg)`,
-                transformOrigin: 'center center',
-              }}
-            >
-              <div className="aspect-square bg-gray-100 mb-2 overflow-hidden">
-                <img
-                  src={photo.src}
-                  alt={photo.caption}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p
-                className="text-center italic text-sm"
-                style={{ fontFamily: 'Georgia, serif', color: '#555' }}
-              >
-                {photo.caption}
-              </p>
-            </div>
-          ))}
+      {/* Snippets heading */}
+      <h2
+        style={{
+          fontFamily: GH,
+          fontSize: '52px',
+          lineHeight: 1.2,
+          marginBottom: '48px',
+          textAlign: 'center',
+        }}
+      >
+        Some more snippets of my life!
+      </h2>
+
+      {/* 2×2 photo grid */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '40px 56px',
+          maxWidth: '700px',
+          margin: '0 auto',
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Polaroid
+            src="/assets/elephant-photo.jpg"
+            caption="international relations🌍"
+            rotation={-4}
+            width={270}
+          />
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+          <Polaroid
+            src="/assets/curtis_sing.jpg"
+            caption="Lookin' kinda... #sharp"
+            rotation={3}
+            width={270}
+          />
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-10px' }}>
+          <Polaroid
+            src="/assets/curtis_food.jpg"
+            caption="beli-maxxing😋"
+            rotation={-2}
+            width={270}
+          />
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+          <Polaroid
+            src="/assets/curtis_senate.JPG"
+            caption="repping STEM students"
+            rotation={4}
+            width={270}
+          />
         </div>
       </div>
     </section>

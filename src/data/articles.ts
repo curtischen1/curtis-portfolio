@@ -86,29 +86,16 @@ export const articles: Article[] = [
     title: 'Why I started writing',
     description: 'Trying new things, keeping old skills',
     date: 'February 25th, 2026',
-    readTime: '4 min read',
+    readTime: '2 min read',
     coverImage: '/assets/Curtis_computer.png',
     coverImageStyle: { width: '130%', height: '130%', objectFit: 'contain', display: 'block', margin: '0 auto', marginTop: '40px' },
     content: [
       {
-        heading: 'The Motivation',
         body: [
-          "I've always been a builder. Products, ideas, LEGO sets — if there's something to make, I want to make it. But I realized recently that I'd been neglecting one of the most important tools a product manager has: clear, deliberate communication through writing.",
-          "I started this blog because I wanted a place to think out loud. Product is a discipline that lives at the intersection of tech, psychology, and communication. The best PMs I've met are the ones who can take something complex and make it simple. Writing is how I'm training that muscle.",
-        ],
-      },
-      {
-        heading: 'Why Native vs Medium',
-        body: [
-          "I started on Medium like most people do. It's convenient, has a built-in audience, and looks great. But I found myself writing for Medium's algorithm rather than writing for myself.",
-          "Building this natively means I own the words. The formatting is mine. The design is mine. And honestly, it gives me one more excuse to keep building and shipping — which is the best way I know how to learn.",
-        ],
-      },
-      {
-        heading: "What's Next",
-        body: [
-          "I plan to write about product management, recruiting, the weird intersection of CS and psychology, and whatever else I'm thinking about. No schedule, no newsletter, no promises — just writing when I have something worth saying.",
-          "If something I write helps even one person, that's enough for me.",
+          "In the age of AI, where LLMs are writing our PRDs and agents are designing and building full products, I didn't want to lose my voice in the process.", 
+          "I actively use these tools because they make me more productive and help me build faster. But the more I rely on them, the more I notice my voice and visual identity quietly fading. So this year, I made it my mission to be more creative. I started dabbling in design, built some apps, and designed this website. Now I want to take it a step further and start writing." ,
+          "This will be intentionally unfocused. Expect anything from product case studies, human behavior, the business landscape of the toy market, to whatever else is on my mind.",
+         "This site is meant to be a time capsule of my beliefs and my little corner of the internet. I hope you enjoy!"
         ],
       },
     ],

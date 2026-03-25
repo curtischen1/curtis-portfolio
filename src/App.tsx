@@ -6,6 +6,7 @@ import { Work } from './components/Work';
 import { About } from './components/About';
 import { ArticleView } from './components/Article';
 import { type Article } from './data/articles';
+import { Footer } from './components/Footer';
 
 type Page = 'home' | 'writing' | 'about';
 
@@ -51,6 +52,8 @@ export default function App() {
           </div>
         )}
       </main>
+
+      <Footer />
     </div>
   );
 }

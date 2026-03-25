@@ -1,4 +1,5 @@
 import { articles, type Article } from '../data/articles';
+import { SlantedUnderline } from './SlantedUnderline';
 
 const GH = "'Gloria Hallelujah', cursive";
 
@@ -15,13 +16,12 @@ export function Work({ onSelectArticle }: WorkProps) {
         style={{
           fontFamily: GH,
           fontSize: '72px',
-          textDecoration: 'underline',
           textAlign: 'center',
           marginBottom: '48px',
           lineHeight: 1.1,
         }}
       >
-        Stories
+        <SlantedUnderline>Stories</SlantedUnderline>
       </h1>
 
       {/* Subtitle row: typewriter illustration + text */}

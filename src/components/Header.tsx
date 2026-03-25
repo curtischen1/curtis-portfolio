@@ -9,13 +9,15 @@ const GH = "'Gloria Hallelujah', cursive";
 
 export function Header({ currentPage, onNavigate }: HeaderProps) {
   return (
-    <header className="px-8 py-6 flex justify-end">
+    <header style={{ padding: '24px 32px', display: 'flex', justifyContent: 'flex-end', width: '100%', boxSizing: 'border-box' }}>
       <nav
         style={{
-          border: '2px solid black',
+          border: '4px solid black',
           borderRadius: '9999px',
-          overflow: 'hidden',
           display: 'flex',
+          alignItems: 'center',
+          padding: '0px',
+          gap: '0px',
         }}
       >
         {(['home', 'about', 'writing'] as Page[]).map((page) => (
@@ -24,13 +26,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             onClick={() => onNavigate(page)}
             style={{
               fontFamily: GH,
-              fontSize: '14px',
-              padding: '8px 20px',
+              fontSize: '22px',
+              padding: '10px 28px',
               cursor: 'pointer',
-              background: 'transparent',
               border: 'none',
-              textDecoration: currentPage === page ? 'underline' : 'none',
-              fontWeight: currentPage === page ? 'bold' : 'normal',
+              borderRadius: '9999px',
+              backgroundColor: currentPage === page ? '#000' : 'transparent',
+              color: currentPage === page ? '#F1EEE1' : '#000',
+              transition: 'background-color 0.15s ease, color 0.15s ease',
             }}
           >
             {page}

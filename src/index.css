@@ -1325,3 +1325,22 @@ html {
   inherits: false;
   initial-value: 0;
 }
+
+/* LEGO snap impact lines */
+.snap-lines-in {
+  animation: snap-fade-in 0.2s ease-out forwards;
+}
+
+.snap-lines-out {
+  animation: snap-fade-out 0.3s ease-out forwards;
+}
+
+@keyframes snap-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes snap-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

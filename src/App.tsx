@@ -13,7 +13,6 @@ type Page = 'home' | 'writing' | 'about';
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
-
   function handleNavigate(page: Page) {
     setCurrentPage(page);
     setSelectedArticle(null);

@@ -97,8 +97,7 @@ export function About() {
             maxWidth: '400px',
           }}
         >
-          I've always been a builder at heart. As a kid, LEGOs were how I
-          expressed myself, turning imagination into something real and tangible.
+          I've always been a builder at heart. As a kid, LEGOs were how I brought my imagination to life, turning ideas into something real and tangible.
         </p>
       </div>
 
@@ -123,13 +122,11 @@ export function About() {
           >
             Along the way I've been on a couple side quests: trained as a monk,
             sang in a choir, ran for student government, explored the world. I've
-            always been drawn to new experiences and the different ways people
-            create and connect.
+            always been drawn to new experiences and understanding what makes people
+            tick.
           </p>
           <p style={{ fontSize: '18px', lineHeight: 1.75, color: '#333' }}>
-            Product lives at the intersection of creativity and innovation — the
-            one place that lets me keep building, keep imagining, and actually
-            make things that matter.
+          Product, at its core, has always been about understanding people. The best products use creativity and technology to better how people actually live. As much as I love building products and legos, I love solving <em>real problems with real solutions</em>.
           </p>
         </div>
         <Polaroid

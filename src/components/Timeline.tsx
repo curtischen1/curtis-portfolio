@@ -145,6 +145,7 @@ function SnapLinesSVG({ brickIndex, top, left, fading }: { brickIndex: number; t
 
 export function Timeline() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [animComplete, setAnimComplete] = useState(false);
   const [showLastSnapLines, setShowLastSnapLines] = useState(false);
@@ -198,7 +199,8 @@ export function Timeline() {
       setScrollProgress(progress);
 
       // Play click sound when a brick is within 3px of its snap position
-      for (let step = 0; step < totalBricks; step++) {
+      // Skip step 0 (first brick) — it has nothing to snap against
+      for (let step = 1; step < totalBricks; step++) {
         const brickIdx = REVEAL_ORDER[step];
         if (snappedBricksRef.current.has(brickIdx)) continue;
         const entrance = Math.max(0, Math.min(1, progress - step));
@@ -363,6 +365,7 @@ export function Timeline() {
                   data-brick={item.company.toLowerCase().replace(/\s+/g, '-')}
                   onMouseEnter={() => (animComplete && visible) ? setHoveredIndex(index) : undefined}
                   onMouseLeave={() => setHoveredIndex(null)}
+                  onClick={() => (animComplete && visible) ? setClickedIndex(index) : undefined}
                   style={{
                     position: 'absolute',
                     top: animatedTop,
@@ -452,9 +455,9 @@ export function Timeline() {
                 transition: 'opacity 0.5s ease-in',
               }}
             >
-              hover over a block to learn more
+              click a block to learn more
             </div>
-            {hoveredIndex !== null && (
+            {(hoveredIndex ?? clickedIndex) !== null && (
               <div
                 style={{
                   border: '4px solid black',
@@ -467,7 +470,7 @@ export function Timeline() {
                 }}
               >
                 <div style={{ fontFamily: GH, fontSize: '40px', marginBottom: '2px' }}>
-                  {timelineData[hoveredIndex].company}
+                  {timelineData[(hoveredIndex ?? clickedIndex)!].company}
                 </div>
                 <div
                   style={{
@@ -477,10 +480,10 @@ export function Timeline() {
                     marginBottom: '10px',
                   }}
                 >
-                  {timelineData[hoveredIndex].role}
+                  {timelineData[(hoveredIndex ?? clickedIndex)!].role}
                 </div>
                 <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '20px', color: 'black', lineHeight: 1.5 }}>
-                  {timelineData[hoveredIndex].description}
+                  {timelineData[(hoveredIndex ?? clickedIndex)!].description}
                 </div>
               </div>
             )}

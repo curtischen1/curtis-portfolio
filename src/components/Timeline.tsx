@@ -9,7 +9,7 @@ const GH = "'Gloria Hallelujah', cursive";
 
 const BRICK_WIDTH    = 320;
 const BRICK_HEIGHT   = 221;
-const STEP_A = 106;
+const STEP_A = 108;
 const STEP_B = 142;
 const X_OFFSET = 69;
 
@@ -417,7 +417,7 @@ export function Timeline() {
           </div>
 
           {/* Right column: big subtitle + tooltip */}
-          <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ flex: 1, minWidth: 0, position: animComplete ? 'sticky' : undefined, top: animComplete ? '100px' : undefined, alignSelf: 'flex-start' }}>
             <p
               style={{
                 fontFamily: GH,

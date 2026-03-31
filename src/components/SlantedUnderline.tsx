@@ -1,9 +1,11 @@
 interface SlantedUnderlineProps {
   children: React.ReactNode;
   offset?: number;
+  thickness?: number;
+  animated?: boolean;
 }
 
-export function SlantedUnderline({ children, offset = -8 }: SlantedUnderlineProps) {
+export function SlantedUnderline({ children, offset = -8, thickness = 4, animated = false }: SlantedUnderlineProps) {
   return (
     <span style={{ position: 'relative', display: 'inline-block' }}>
       {children}
@@ -23,9 +25,12 @@ export function SlantedUnderline({ children, offset = -8 }: SlantedUnderlineProp
           d="M 0 11 Q 30 9, 60 7 Q 90 5, 120 5 Q 150 4, 180 2 L 200 1"
           fill="none"
           stroke="black"
-          strokeWidth="4"
+          strokeWidth={thickness}
           strokeLinecap="round"
-          vectorEffect="non-scaling-stroke"
+          vectorEffect={animated ? undefined : "non-scaling-stroke"}
+          pathLength={animated ? 1 : undefined}
+          className={animated ? 'underline-draw' : undefined}
+          style={animated ? { strokeDasharray: 1.01, strokeDashoffset: 1.01 } : undefined}
         />
       </svg>
     </span>

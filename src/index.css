@@ -1344,3 +1344,64 @@ html {
   from { opacity: 1; }
   to { opacity: 0; }
 }
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  40% {
+    opacity: 0.4;
+    transform: translateY(15px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: bounce-in 0.5s ease-out both;
+}
+
+.page-enter-delayed {
+  animation: bounce-in 0.5s ease-out 0.15s both;
+}
+
+@keyframes draw-underline {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.underline-draw {
+  stroke-dasharray: 1.01;
+  stroke-dashoffset: 1.01;
+  animation: draw-underline 0.25s ease-out 0.55s forwards;
+}
+
+@keyframes face-settle {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-12px);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  55% {
+    transform: translateY(-7px);
+  }
+  70% {
+    transform: translateY(0);
+  }
+}
+
+.notion-face-bounce {
+  animation: face-settle 0.8s ease-out 0.85s both;
+}

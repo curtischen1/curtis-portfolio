@@ -60,6 +60,7 @@ export function About() {
   return (
     <section className="py-12">
       {/* Main heading */}
+      <div className="page-enter">
       <h1
         style={{
           fontFamily: GH,
@@ -71,8 +72,10 @@ export function About() {
       >
         A little more about me...
       </h1>
+      </div>
 
       {/* Section 1: Baby photo left + text right */}
+      <div className="page-enter-delayed">
       <div
         style={{
           display: 'flex',
@@ -193,6 +196,7 @@ export function About() {
             width={270}
           />
         </div>
+      </div>
       </div>
     </section>
   );

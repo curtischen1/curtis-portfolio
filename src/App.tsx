@@ -24,20 +24,24 @@ export default function App() {
 
       <main className="px-6 py-4">
         {currentPage === 'home' && (
-          <div className="max-w-5xl mx-auto">
-            <Hero />
-            <Timeline />
+          <div key="home" className="max-w-5xl mx-auto">
+            <div className="page-enter">
+              <Hero />
+            </div>
+            <div className="page-enter-delayed">
+              <Timeline />
+            </div>
           </div>
         )}
 
         {currentPage === 'writing' && !selectedArticle && (
-          <div className="max-w-4xl mx-auto">
+          <div key="writing" className="max-w-4xl mx-auto">
             <Work onSelectArticle={setSelectedArticle} />
           </div>
         )}
 
         {currentPage === 'writing' && selectedArticle && (
-          <div className="max-w-4xl mx-auto">
+          <div key={`article-${selectedArticle.id}`} className="max-w-4xl mx-auto page-enter">
             <ArticleView
               article={selectedArticle}
               onBack={() => setSelectedArticle(null)}
@@ -46,7 +50,7 @@ export default function App() {
         )}
 
         {currentPage === 'about' && (
-          <div className="max-w-4xl mx-auto">
+          <div key="about" className="max-w-4xl mx-auto">
             <About />
           </div>
         )}

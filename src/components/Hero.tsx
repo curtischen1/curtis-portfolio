@@ -1,4 +1,5 @@
 import { MapPin } from 'lucide-react';
+import { SlantedUnderline } from './SlantedUnderline';
 
 const GH = "'Gloria Hallelujah', cursive";
 
@@ -8,13 +9,15 @@ export function Hero() {
       {/* Title + portrait */}
       <div className="flex items-center justify-center gap-3 mb-4">
         <h1 style={{ fontFamily: GH, fontSize: '96px', lineHeight: 1.15 }}>
-          Hey, I'm Curtis
+          Hey, I'm <SlantedUnderline thickness={6} animated>Curtis</SlantedUnderline>
         </h1>
-        <img
-          src="/assets/my-notion-face-portrait.svg"
-          alt="Curtis"
-          style={{ width: '160px', height: '160px', flexShrink: 0 }}
-        />
+        <div className="notion-face-bounce" style={{ flexShrink: 0 }}>
+          <img
+            src="/assets/my-notion-face-portrait.svg"
+            alt="Curtis"
+            style={{ width: '160px', height: '160px' }}
+          />
+        </div>
       </div>
 
       {/* Location */}

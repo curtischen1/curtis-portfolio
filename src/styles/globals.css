@@ -192,3 +192,22 @@ html {
   font-size: var(--font-size);
   scrollbar-gutter: stable;
 }
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: bounce-in 0.5s ease-out both;
+}

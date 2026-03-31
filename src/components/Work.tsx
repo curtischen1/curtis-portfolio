@@ -11,7 +11,8 @@ export function Work({ onSelectArticle }: WorkProps) {
 
   return (
     <section className="py-12">
-      {/* Title */}
+      {/* Title + subtitle */}
+      <div className="page-enter">
       <h1
         style={{
           fontFamily: GH,
@@ -43,8 +44,10 @@ export function Work({ onSelectArticle }: WorkProps) {
           Check out some of my<br />writing...
         </p>
       </div>
+      </div>
 
       {/* Article grid */}
+      <div className="page-enter-delayed">
       <div
         style={{
           display: 'grid',
@@ -119,6 +122,7 @@ export function Work({ onSelectArticle }: WorkProps) {
             </div>
           </article>
         ))}
+      </div>
       </div>
     </section>
   );

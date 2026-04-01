@@ -45,7 +45,7 @@ function Polaroid({
           fontFamily: GH,
           fontSize: '15px',
           textAlign: 'center',
-          marginTop: '14px',
+          marginTop: '20px',
           color: '#333',
           lineHeight: 1.3,
         }}
@@ -162,6 +162,7 @@ export function About() {
           gap: '40px 56px',
           maxWidth: '700px',
           margin: '0 auto',
+          alignItems: 'start',
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'center' }}>

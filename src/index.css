@@ -1381,7 +1381,7 @@ html {
 .underline-draw {
   stroke-dasharray: 1.01;
   stroke-dashoffset: 1.01;
-  animation: draw-underline 0.25s ease-out 0.55s forwards;
+  animation: draw-underline 0.25s ease-out 0.9s forwards;
 }
 
 @keyframes face-settle {
@@ -1403,5 +1403,5 @@ html {
 }
 
 .notion-face-bounce {
-  animation: face-settle 0.8s ease-out 0.85s both;
+  animation: face-settle 0.8s ease-out 1.3s both;
 }

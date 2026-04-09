@@ -59,7 +59,7 @@ export default function App() {
         )}
 
         {currentPage === 'writing' && selectedArticle && (
-          <div key={`article-${selectedArticle.id}`} className="max-w-4xl mx-auto page-enter">
+          <div key={`article-${selectedArticle.id}`} className="max-w-6xl mx-auto page-enter">
             <ArticleView
               article={selectedArticle}
               onBack={() => setSelectedArticle(null)}

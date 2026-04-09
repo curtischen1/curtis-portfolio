@@ -1,4 +1,5 @@
 import { type Article } from '../data/articles';
+import { TableOfContents } from './TableOfContents';
 
 const GH = "'Gloria Hallelujah', cursive";
 
@@ -33,36 +34,57 @@ export function ArticleView({ article, onBack }: ArticleProps) {
       {/* Article as paper note */}
       <div
         style={{
-          backgroundColor: '#fff',
+          backgroundColor: '#F6F5F3',
           border: '3px solid black',
           boxShadow: '5px 6px 0px rgba(0,0,0,0.15)',
           padding: '48px 48px 56px',
-          maxWidth: '820px',
+          maxWidth: article.toc && article.toc.length > 0 ? '1020px' : '820px',
+          margin: '0 auto',
         }}
       >
-        {/* Article title */}
-        <h1
-          style={{
-            fontFamily: GH,
-            fontSize: '64px',
-            lineHeight: 1.2,
-            marginBottom: '48px',
-          }}
-        >
-          {article.title}
-        </h1>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '48px' }}>
+          {/* Sticky TOC sidebar — starts below the title */}
+          {article.toc && article.toc.length > 0 && (
+            <aside
+              style={{
+                position: 'sticky',
+                top: '24px',
+                flexShrink: 0,
+                alignSelf: 'flex-start',
+                marginTop: '200px',
+              }}
+            >
+              <TableOfContents sections={article.toc} />
+            </aside>
+          )}
 
-        {/* Article content */}
+          {/* Main column: title + content */}
+          <div style={{ flex: '1 1 auto', minWidth: 0 }}>
+          {/* Article title */}
+          <h1
+            style={{
+              fontFamily: GH,
+              fontSize: '64px',
+              lineHeight: 1.2,
+              marginBottom: '48px',
+            }}
+          >
+            {article.title}
+          </h1>
+
+          {/* Article content */}
         <div>
           {article.content.map((section, i) => (
             <div key={i} style={{ marginBottom: '48px' }}>
               {section.heading && (
                 <h2
+                  id={section.id}
                   style={{
                     fontFamily: GH,
                     fontSize: '36px',
                     marginBottom: '20px',
                     lineHeight: 1.3,
+                    scrollMarginTop: '24px',
                   }}
                 >
                   {section.heading}
@@ -89,6 +111,7 @@ export function ArticleView({ article, onBack }: ArticleProps) {
                   style={{
                     paddingLeft: '28px',
                     marginBottom: '16px',
+                    listStyleType: 'disc',
                   }}
                 >
                   {section.bullets.map((bullet, k) => (
@@ -122,8 +145,35 @@ export function ArticleView({ article, onBack }: ArticleProps) {
                   {paragraph}
                 </p>
               ))}
+
+              {section.image && (
+                <div style={{ display: 'flex', justifyContent: 'center', margin: '24px 0 32px' }}>
+                  <img
+                    src={section.image.src}
+                    alt={section.image.alt}
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  />
+                </div>
+              )}
+
+              {section.body3 && section.body3.map((paragraph, j) => (
+                <p
+                  key={`b3-${j}`}
+                  style={{
+                    fontSize: '18px',
+                    lineHeight: 1.8,
+                    color: '#222',
+                    marginBottom: '16px',
+                    fontFamily: 'Georgia, serif',
+                  }}
+                >
+                  {paragraph}
+                </p>
+              ))}
             </div>
           ))}
+        </div>
+          </div>
         </div>
       </div>
     </div>

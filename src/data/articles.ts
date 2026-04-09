@@ -1,10 +1,18 @@
 import type { CSSProperties } from 'react';
 
 export interface ArticleSection {
+  id?: string;
   heading?: string;
   body?: string[];
   bullets?: string[];
   body2?: string[];
+  image?: { src: string; alt: string };
+  body3?: string[];
+}
+
+export interface TocItem {
+  id: string;
+  label: string;
 }
 
 export interface Article {
@@ -15,68 +23,84 @@ export interface Article {
   readTime: string;
   coverImage?: string;
   coverImageStyle?: CSSProperties;
+  toc?: TocItem[];
   content: ArticleSection[];
 }
 
 export const articles: Article[] = [
   {
     id: 'apm-recruiting-101',
-    title: 'APM Recruiting 101',
+    title: 'APM Recruiting from a Non Target School',
     description: "Reflecting on apm recruiting and how i'd do it again",
     date: 'February 25th, 2026',
-    readTime: '15 min read',
+    readTime: '8 min read',
     coverImage: '/assets/curtis_blocks.png',
+    toc: [
+      { id: 'my-experience', label: 'My Experience' },
+      { id: 'recruiting', label: 'Recruiting' },
+      { id: 'product-casing', label: 'Product Casing' },
+      { id: 'how-to-stand-out', label: 'How to Stand Out' },
+    ],
     content: [
       {
+        body: [
+          "Hi, my name is Curtis and I am a 4th year CS + Psych double major at UC Davis, and I am an incoming APM at Salesforce. A lot of APMs you'll find at top programs come from schools with established product communities and large CS pipelines. This is not that. I wanted to reflect on my recruiting experience and provide some insights on what worked for me and what I wish I would've done more of, coming from a school without that built-in advantage.",
+        ],
+      },
+      {
+        id: 'my-experience',
         heading: 'My Experience',
         body: [
-          "I applied to 20 jobs, got 4 interviews, and received 2 APM offers.",
-          "I am not the most qualified APM applicant. I am here because I only applied for APM roles. Don't do this.",
-          "Now I want to share the career moves I made that I showcased on my resume.",
-          "My freshman year, I only joined one club/team in Student Government and I joined Student Government/Academic and STEM Affairs. At this point, I did not know what I wanted to do. I took a product design class at UC Davis Design and I discovered the design space. I was unsure on the path to get there so I decided to just start trying things. I was interested in AI. I joined the AI Student Collective (in the External Affairs team because I took a philosophy class on Artificial Intelligence and wanted to learn more). I joined Student Government because I wanted to be in a space where I could help others.",
-          "My sophomore year, I won my school's election for Student Government and I moved up in ASG as the Director of Strategic Partnerships. I discovered product because someone from Telos reached out to me through LinkedIn knowing my Senator background. It was around that time that being a Senator taught me about product before I knew what product was. I really loved the work I was doing in Student Government: finding campus problems, talking to students, working with different teams to create solutions, and marketing and iterating on the solutions. As you can see, that deeply represents the product lifecycle. At this point, I knew product was for me. I cold-emailed a lot of startups and was finally accepted for a Telos internship. It was like a lightbulb turned on in my head. My first real experience with product was at HireGro, let's call it. Better product management experience on campus and my Telos internship, which was an early stage startup with experience in design and marketing. Despite our team not having any traditional product experience, we moved from 5 to 9 startups in the competition. This experiment validated my desire and ability to go into product.",
-          "At ProdCon, I networked with someone who was running a bootcamp program. I applied and got in, and matched with my first Product Management internship. It was a remote unpaid internship at a AI HealthTech startup. Despite this, I loved the work I was able to do and the ownership I had over the product roadmap.",
-          "Side Note: take advantage of club opportunities, you never know where they could take you.",
-          "My junior year was the busiest, most impactful, and most stressful year of my college career. I became the President of AISC, and I also became Vice President of the Product Space chapter at UCD, and I was able to network my way into another unpaid remote PM internship, this time with Telos2. I also did a lot of other things on top of this (STEM lead at ASUCD, Ambassador for Notion, Strategy Consulting Externship at PwC, resume peer review at Perplexity, etc.) These things did not make it on my resume when APM recruiting. Juggling all these while also APM recruiting was hard. I started a Product Manager internship at Amazon in October so I was somewhat relieved. I did spend the rest of my junior year in hopes of landing a PM internship at big tech (spoiler alert: I did not). To sum it up, I spent my whole junior year overworking myself in hopes of landing a senior-level internship. The hard part is, everything I did my junior year didn't even help me land Amazon. I applied around June with only my HealthTech internship and Senate on my resume.",
-          "I spent my sophomore year learning about product and my junior year learning about APM recruiting. Note that these are two different things that use two different muscles.",
-          "On a personal note, I spent almost every free hour I had on recruiting and figuring out ways to optimize my 'profile' and apps. This was to the detriment of my clubs and friendships, my physical health, and my mental health too. Would not recommend.",
-          "At Amazon, I was able to reshape my intern project into something more product focused, building an internal AI product to optimize labor planning. This is very lucky because I realized full time Product Manager interns whose final deliverables were strategy documents or playbooks. I got very lucky that my team accepted my product proposal and allowed me to pursue it.",
-          "At this point, I was still very unconfident in my APM Candidate profile so I was actively looking for new APM internships and applying to PM internships concurrently with APM applications. I interviewed at Big Tech and Startups but nothing materialized. Note: I did land more product internships after Amazon after slapping my Junior Year Experiences so it was not for nothing.",
-          "For Senior year, I decided to go all in on recruiting. I took no classes, only Career Center and stepped back from all extracurriculars. Everyday I was either interviewing or prepping for an interview up until I got both my offers in early November.",
-        ],
-      },
-      {
-        heading: 'The Recruiting Process Itself',
-        body: [
-          "As I mentioned previously, Product Management and Recruiting for PM are very different things. They use different muscles. A lot of the times, the skills you gain from recruiting don't really help on the job. First, I want to go over what I did it.",
-          "Sophomore year, I bought and read a lot of books on recruiting. I started reading/Cracking the PM Interview, PM Interview by Lewis C Lin.",
-          "I also spent the summer figuring out how to optimize my resume and networking with people to try and get advice. I started applying early in February but nothing materialized.",
-          "Junior year, I was relatively very busy. I also discovered and used some AI mock interview tools (a lot of them are paywalled now unfortunately). I applied to jobs almost every cycle.",
-          "Senior year, I spent all my time casing pretty much. I started mocking with real people (both friends and strangers) and did deep dives in pretty much every company I was interviewing at. I knew there were roughly 30 programs I wanted to apply to so rather than applying relentlessly cold, I was more methodical. I got my referral contacts very early in the season for everywhere I could (June/July), found out roughly when each program would open based on previous years and monitoring recruiter announcements on LinkedIn, and made sure to apply both early and with the referral. A lot of discussion about whether you should apply early or should you apply with a referral. For APM, given how slim the chances are, do your best to maximize your chances.",
-          "When it comes to how I approached casing and mocking, do NOT do what I did. I had a lot of anxiety and insecurity when it came to casing so I was scared to mock with someone or ask people to review my resume. In my personal experience, my resume got significantly better when I compared it with other product managers versus when I spent hours on google trying to find 'the best PM resumes' and modeled mine after them.",
-          "For casing, I spent a year doing solo casing before my first real mock. Despite the experience, my first mock was truly bad. It was a wake up call that I needed to do more reps. After that, I almost exclusively mocked with real people. I learned exponentially faster in the three months mocking with real people than the year casing individually. I also think there's immense value in seeing how other people answer the questions.",
-          "If I could go back in time, I would spend a couple weeks learning the types of questions and frameworks I need to know for product and then practice with an AI mock interviewer so you have a general understanding of the process. Then I would try to schedule at least one mock a week to stay sharp. I watched a video that said to start prepping for the google apm interview 6 months before the process starts. Truly the earlier the better. For APM interviews, you can be asked any of these types of questions:",
+          "Before discovering product, I joined my school's student government because I wanted to be in a role where I solve problems at scale. Through my connections and work in student government I was able to join and become a leader in the AI Collective, a global organization dedicated to learning and applying AI.",
+          "When I discovered product, I did my school's Product Case Competition and ended as a finalist despite not having traditional product experience. This sparked my interest in product and by leveraging my unconventional experiences and transferrable skills, I was able to secure my first 2 internships in Product at AI Startups. Although I was brand new to the space, my work here shaped a lot of my product knowledge and made me excited to share this career path with students at UC Davis.",
+          "After seeing the gap in education for product at Davis, I became founding VP at my school's chapter of Product Space. We wanted to craft a pathway for students with no experience to learn and hone the fundamentals of product. I was also able to leverage my startup and leadership experience to land my Program Manager Internship at Amazon. I worked with my manager to make my intern project more product related, and I ended up building an internal AI tool for Labor Optimization, along with owning product responsibilities like talking to customers and writing PRDs.",
+          "By the time I was applying for APM roles, my resume looked like this:",
         ],
         bullets: [
-          'Product Design',
-          'Logical',
-          'Estimation',
-          'Behavioral',
-          'Strategy',
-        ],
-      },
-      {
-        heading: "What Makes a Good APM Candidate and How I'd do it again",
-        body: [
-          "Truthfully, there is no 'perfect' candidate. However, I've seen a lot of different APM profiles and I observed some patterns:",
-        ],
-        bullets: [
-          'PM at both big tech and startups',
-          'Technical experience',
-          'Leadership',
+          'Amazon Program Manager Internship - AI Supply Chain',
+          'KnoWhiz Product Manager Internship - AI Edtech',
+          'Telos Product Manager Internship - AI HealthTech',
+          'AISC President - AI Club',
+          'Product Space Vice President - PM Club',
+          'Notion Campus Leader - framed as Growth GTM experience',
+          'Nomad - Hackathon Project, 2nd place overall',
         ],
         body2: [
-          "I would prioritize Product Design and Behavioral questions as they are asked the most frequently.",
+          "I added the Hackathon and Campus Leader position to fill the weak points in my resume, specifically growth marketing and technical experience. And here are my results:",
+        ],
+        image: {
+          src: '/assets/SeniorYear_Recruiting.png',
+          alt: 'Sankey diagram of senior year recruiting results: 22 applied, 10 no response, 10 rejected, 4 first round, 2 final round, 2 offers, 1 accepted',
+        },
+        body3: [
+          "I wanted to provide an honest overview of my experiences and recruiting journey to show what realistic results look like. I had to be very scrappy earlier in my career. I wasn't getting a lot of interviews and most of the experiences on my resume were unpaid. I know there is a big push for students not to take unpaid opportunities but I am of the belief that any experience is good experience, and you should be willing to take any opportunities you can get, especially starting out in your career.",
+          "Caveat: I recognize my privilege when I say that students should take unpaid opportunities. I know people sometimes can't afford to work for free because they need to pay bills and support themselves. If you are able though, I think being open to every opportunity that comes your way truly does snowball into better opportunities.",
+        ],
+      },
+      {
+        id: 'recruiting',
+        heading: 'The Recruiting Experience',
+        body: [
+          "As you saw in the graphic above, I only applied to 22 positions, mostly APM programs and New Grad Product Manager roles. I also took my fall quarter off to focus solely on recruiting, so every day I would just be casing and doing company research.",
+          "One thing I want to highlight is referrals. Everyone talks about whether it's more important to apply fast or apply with a referral. I believe you should do both. Especially for APM programs, you know roughly when they open every year, so you should be trying to get your referrals before the application even opens. Every first round interview I got, I had a referral for. Google's APM program receives 10,000+ applicants. You need to do whatever it takes to ensure your application gets seen. For Meta specifically, I prewrote my essays based on previous RPM essay prompts so I could apply as early as possible. Unlike other new grad roles, APM programs are very predictable, so use that to your advantage and be as prepared as possible.",
+        ],
+      },
+      {
+        id: 'product-casing',
+        heading: 'Product Casing',
+        body: [
+          "Something I want to make clear is that Product Management and Product Recruiting are very different things. Getting good at product doesn't necessarily mean you will be great at product casing because they use fundamentally different muscles. PM experience may help you develop your product sense but learning the frameworks is essential for doing well in your interviews.",
+          "I have a lot of regret about how I approached product casing. Since discovering product, I read a lot of books and sought out a lot of tips trying to find the \"secret\" to cracking the interview. Despite years of searching, a PM at Meta told me he also spent years searching and thousands of dollars only to find there is no secret. You just have to do the work and practice.",
+          "I didn't start mocking seriously until I started recruiting for APM roles, and in the 2 months I spent seriously mocking with real people, I improved more than in the 2 years I spent reading and looking for tips. If I were to do it again, I would've spent a month learning how product casing questions work across the main types: Product Design, Analytical, Estimation, and Product Strategy. Then I would've scheduled a mock interview at least once a week to build the muscle. I attended a Q&A with a Google APM who said he mocked for 8 months before his interview and felt he needed all that time to get sharp. I'll link resources at the bottom for the best places to learn about question types and what a good answer looks like. You never know when you'll get the interview, so when you do, you don't want to squander it.",
+          "One thing people often overlook is Behavioral prep. Behaviorals are super important and are often asked before you even reach the casing rounds. Make sure you have stories prepared for common prompts like leading a team, handling conflict, and managing competing deadlines. I won't go deep on the STAR framework since most people know it, but one thing I added for APM recruiting was a Learn section at the end of each story, where I talked about what I took away and how I'd apply it going forward or approach the situation differently.",
+        ],
+      },
+      {
+        id: 'how-to-stand-out',
+        heading: 'How to Stand Out',
+        body: [
+          "I think people focus on how to stand out before focusing on being a competitive applicant. Get your fundamentals down first. After that, the most important thing you can do is craft your story. Make sure your \"Tell me about yourself\" and \"Why product\" answers are compelling and specific to you. In a sea of competitive applicants, your unique journey is your biggest differentiator. For me, that was translating my background in public policy and student government into a genuine desire to solve problems at scale with technical solutions.",
+          "I hope this gave you something useful, whether you're just starting out or deep in the process.",
         ],
       },
     ],

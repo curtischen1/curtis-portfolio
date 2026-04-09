@@ -323,7 +323,7 @@ export function Timeline() {
   const activeSnapBrick = getActiveSnapBrick();
 
   return (
-    <section ref={sectionRef} style={{ paddingLeft: '80px', minHeight: animComplete ? undefined : scrollHeight }}>
+    <section ref={sectionRef} style={{ paddingLeft: '120px', minHeight: animComplete ? undefined : scrollHeight }}>
       <div style={animComplete ? { paddingTop: '48px', paddingBottom: '48px' } : { position: 'sticky', top: '0px', paddingTop: '48px', paddingBottom: '48px' }}>
         {/* Header */}
         <div style={{ marginBottom: '60px' }}>
@@ -465,7 +465,7 @@ export function Timeline() {
                   backgroundColor: '#F6F5F3',
                   marginTop: '16px',
                   transform: 'translateY(25px)',
-                  width: '500px',
+                  width: '600px',
                   height: '240px',
                 }}
               >

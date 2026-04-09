@@ -56,7 +56,7 @@ export function Footer() {
     >
       {/* Left side */}
       <div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
           <span style={{ fontFamily: GH, fontSize: '44px' }}>Curtis Chen</span>
           <img
             src="/assets/my-notion-face-portrait.svg"
@@ -64,8 +64,8 @@ export function Footer() {
             style={{ width: '72px', height: '72px' }}
           />
         </div>
-        <p style={{ fontFamily: GH, fontSize: '24px', color: '#555', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          Made with <HeartIcon />
+        <p style={{ fontFamily: GH, fontSize: '24px', color: '#000', display: 'flex', alignItems: 'center', gap: '14px' }}>
+          Made with <img src="/assets/Lego Heart.svg" alt="heart" style={{ width: '34px', height: '34px', position: 'relative', top: '-3px' }} />
         </p>
       </div>
 

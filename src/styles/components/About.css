@@ -113,7 +113,7 @@
  * photo → text → photo → text blocks. The bottom polaroid grid
  * goes from 2-column to single-column.
  * ─────────────────────────────────────────────────────────────────── */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .design-canvas--about {
     transform: none;
     margin-bottom: 0;

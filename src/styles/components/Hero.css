@@ -115,7 +115,7 @@
  * JSX restructure (greeting span on its own line, name+portrait kept
  * together as inline-flex) handles the title wrap there.
  * ─────────────────────────────────────────────────────────────────── */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .design-canvas--hero {
     transform: none;
     margin-bottom: 0;

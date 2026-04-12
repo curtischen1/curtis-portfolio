@@ -1,0 +1,316 @@
+/* ═══════════════════════════════════════════════════════════════════
+ * Timeline.
+ *
+ * The scroll-driven brick animation uses `getBoundingClientRect()`
+ * math that breaks under CSS `transform: scale()`, so this section
+ * is NOT canvas-scaled. Laptop layout only for now — a separate
+ * mobile stylesheet will handle narrow viewports later.
+ *
+ * IMPORTANT: do not wrap this section in any element with
+ * `overflow-x/y` set — `position: sticky` on `.timeline__inner--sticky`
+ * sticks to its nearest scroll-container ancestor, and adding any
+ * overflow turns that ancestor into a scroll container, which breaks
+ * the brick-build animation entirely.
+ *
+ * Pixel values that come from the animation (getBrickAnimatedTop,
+ * stack offset, etc.) stay as inline styles in Timeline.tsx because
+ * they are dynamic on every scroll frame.
+ * ═══════════════════════════════════════════════════════════════════ */
+
+.timeline {
+  padding-left: 120px;
+  min-width: 1280px;
+}
+
+.timeline__inner {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.timeline__inner--sticky {
+  position: sticky;
+  top: 0;
+}
+
+.timeline__header {
+  margin-bottom: 60px;
+}
+
+.timeline__title {
+  font-family: var(--font-hand);
+  font-size: 72px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.timeline__columns {
+  display: flex;
+  gap: 250px;
+  align-items: flex-start;
+}
+
+.timeline__bricks {
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 20px;
+}
+
+.timeline__brick {
+  position: absolute;
+}
+
+.timeline__brick img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+.timeline__snap-svg {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.timeline__right {
+  flex: 1;
+  min-width: 0;
+  align-self: flex-start;
+}
+
+.timeline__right--sticky {
+  position: sticky;
+  top: 100px;
+}
+
+.timeline__subtitle {
+  font-family: var(--font-hand);
+  font-size: 48px;
+  line-height: 1.2;
+  margin-bottom: 32px;
+}
+
+.timeline__arrow {
+  width: 85px;
+  display: block;
+  margin-left: -90px;
+  margin-top: 215px;
+  transform: translateX(-5px) translateY(-125px) rotate(15deg);
+  margin-bottom: 16px;
+  mix-blend-mode: multiply;
+  transition: opacity 0.5s ease-in;
+}
+
+.timeline__hint {
+  font-family: var(--font-hand);
+  font-size: 30px;
+  color: black;
+  line-height: 1.6;
+  white-space: nowrap;
+  margin-top: -260px;
+  transition: opacity 0.5s ease-in;
+}
+
+.timeline__tooltip {
+  position: relative;
+  border: 4px solid black;
+  padding: 20px;
+  background-color: var(--color-card);
+  margin-top: 16px;
+  transform: translateY(25px);
+  width: 600px;
+  height: 240px;
+}
+
+/* On desktop: show inline tooltip, hide portal tooltip + backdrop. */
+.timeline__tooltip--portal,
+.timeline__tooltip-backdrop {
+  display: none;
+}
+
+.timeline__tooltip-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline__tooltip-close:hover {
+  opacity: 0.7;
+}
+
+.timeline__tooltip-company {
+  font-family: var(--font-hand);
+  font-size: 40px;
+  margin-bottom: 2px;
+}
+
+.timeline__tooltip-role {
+  font-family: var(--font-hand);
+  font-size: 30px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.timeline__tooltip-desc {
+  font-family: Inter, sans-serif;
+  font-size: 20px;
+  color: black;
+  line-height: 1.5;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+ * Mobile (≤768px).
+ *
+ * Layout strategy: stack the two columns vertically. The right
+ * column's children (subtitle / arrow / hint / tooltip) get
+ * `display: contents` on the parent so they become direct flex
+ * items of `.timeline__columns`, which lets us use `order` to
+ * interleave them with `.timeline__bricks`:
+ *
+ *   subtitle  →  hint  →  bricks   (arrow hidden)
+ *
+ * The tooltip is taken out of layout entirely (position: fixed)
+ * and centered on screen as a modal with a blurred backdrop.
+ *
+ * X_OFFSET is dropped to 0 in the JS state at this same breakpoint,
+ * so containerWidth becomes 320 and the bricks fit a 375 viewport
+ * with `margin: 0 auto` centering.
+ * ─────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: 0;
+    min-width: 0;
+  }
+
+  .timeline__inner {
+    padding-top: 24px;
+    padding-bottom: 32px;
+  }
+
+  .timeline__header {
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .timeline__title {
+    font-size: 56px;
+  }
+
+  /* Stack the two columns vertically and flatten the right column
+     so its children become siblings of the bricks div. */
+  .timeline__columns {
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .timeline__right,
+  .timeline__right--sticky {
+    display: contents;
+  }
+
+  /* Reorder via flex order — visual sequence: subtitle → hint → bricks */
+  .timeline__subtitle {
+    order: 1;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .timeline__hint {
+    order: 2;
+    text-align: center;
+    font-size: 22px;
+    margin-top: 0;
+    white-space: normal;
+  }
+
+  .timeline__bricks {
+    order: 3;
+    margin: 0 auto;
+  }
+
+  /* Arrow doesn't make sense in a stacked layout */
+  .timeline__arrow {
+    display: none;
+  }
+
+  /* Hide inline tooltip on mobile; portal version takes over. */
+  .timeline__tooltip--inline {
+    display: none;
+  }
+
+  /* Show portal tooltip as a centered modal with dimmed backdrop */
+  .timeline__tooltip--portal {
+    display: block;
+  }
+
+  .timeline__tooltip {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100vw - 48px);
+    max-width: 400px;
+    height: auto;
+    margin: 0;
+    padding: 24px 20px 28px;
+    border: 4px solid black;
+    border-radius: 12px;
+    z-index: 60;
+    animation: timeline-tooltip-pop-in 0.2s ease-out;
+  }
+
+  .timeline__tooltip-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 55;
+    animation: timeline-backdrop-fade-in 0.2s ease-out;
+  }
+
+  .timeline__tooltip-close {
+    top: 14px;
+    right: 14px;
+  }
+
+  .timeline__tooltip-company {
+    font-size: 32px;
+    padding-right: 32px; /* leave room for the close button */
+  }
+
+  .timeline__tooltip-role {
+    font-size: 22px;
+  }
+
+  .timeline__tooltip-desc {
+    font-size: 16px;
+  }
+}
+
+@keyframes timeline-tooltip-pop-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes timeline-backdrop-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

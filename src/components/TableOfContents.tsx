@@ -1,7 +1,5 @@
 import type { TocItem } from '../data/articles';
 
-const GH = "'Gloria Hallelujah', cursive";
-
 // Geometry derived from the SVG (viewBox 272x193):
 // Front face top edge slope: ((47.76 - 82.06) / (261.74 - 73.56)) -> -10.34deg
 // Side panel top edge slope: ((82.06 - 44) / (73.56 - 6))         ->  29.4deg
@@ -34,26 +32,7 @@ export function TableOfContents({ sections }: Props) {
   };
 
   return (
-    <div
-      style={{
-        width: BLOCK_WIDTH,
-        margin: '8px auto 56px',
-        position: 'relative',
-      }}
-    >
-      <style>{`
-        .lego-row { display: block; text-decoration: none; }
-        .lego-row .lego-face,
-        .lego-row .lego-top { fill: #F6F5F3; transition: fill 0.18s ease; }
-        .lego-row .lego-label { color: #0F0F0F; transition: color 0.18s ease; }
-        .lego-row:hover .lego-face,
-        .lego-row:hover .lego-top { fill: #0F0F0F; }
-        .lego-row:hover .lego-studs path,
-        .lego-row:hover .lego-studs line { stroke: #F6F5F3; }
-        .lego-row:hover .lego-studs path[fill] { fill: #0F0F0F; }
-        .lego-row:hover .lego-label { color: #F6F5F3; }
-      `}</style>
-
+    <div className="toc" style={{ width: BLOCK_WIDTH }}>
       {sections.map((s, i) => (
         <a
           key={s.id}
@@ -61,49 +40,18 @@ export function TableOfContents({ sections }: Props) {
           onClick={(e) => handleClick(e, s.id)}
           className="lego-row"
           style={{
-            position: 'relative',
             marginTop: i === 0 ? 0 : NEGATIVE_MARGIN,
             marginLeft: X_NUDGE_BY_INDEX[i] ?? 0,
             zIndex: sections.length - i,
-            cursor: 'pointer',
           }}
         >
           <LegoBlockSvg />
 
-          {/* Number on the black side panel */}
-          <div
-            style={{
-              position: 'absolute',
-              left: '14%',
-              top: '54%',
-              transform: 'translate(-50%, -50%) rotate(7deg)',
-              transformOrigin: 'center',
-              fontFamily: GH,
-              fontSize: 28,
-              color: '#F6F5F3',
-              pointerEvents: 'none',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {i + 1}.
-          </div>
+          <div className="lego-row__number">{i + 1}.</div>
 
-          {/* Label on the white face */}
           <div
-            className="lego-label"
-            style={{
-              position: 'absolute',
-              left: '62%',
-              top: '57%',
-              width: '54%',
-              transform: `translate(-50%, -50%) skewY(${FACE_SKEW}deg)`,
-              transformOrigin: 'center',
-              fontFamily: GH,
-              fontSize: 20,
-              lineHeight: 1.15,
-              textAlign: 'center',
-              pointerEvents: 'none',
-            }}
+            className="lego-row__label lego-label"
+            style={{ transform: `translate(-50%, -50%) skewY(${FACE_SKEW}deg)` }}
           >
             {s.label}
           </div>

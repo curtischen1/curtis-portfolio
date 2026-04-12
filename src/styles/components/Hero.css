@@ -1,0 +1,170 @@
+/* ═══════════════════════════════════════════════════════════════════
+ * Hero (Strategy #1 — design canvas).
+ * Pixel values are "design pixels" — the .design-canvas wrapper scales
+ * them uniformly for smaller viewports.
+ * ═══════════════════════════════════════════════════════════════════ */
+
+.hero {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 64px;
+}
+
+.hero__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.hero__title {
+  font-family: var(--font-hand);
+  font-size: 96px;
+  line-height: 1.15;
+}
+
+.hero__title-greeting,
+.hero__title-name {
+  /* Inline by default so the title reads as one line on desktop.
+     Mobile media query forces a wrap by making the greeting block. */
+}
+
+.hero__title-name {
+  /* inline-flex keeps "Curtis" and the portrait glued together as one
+     unbreakable unit, so when the title wraps, the face stays next to
+     "Curtis" instead of falling onto a third line. */
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  vertical-align: middle;
+}
+
+.hero__portrait-wrap {
+  display: inline-flex;
+}
+
+.hero__portrait {
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+}
+
+.hero__location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-hand);
+  font-size: 26px;
+  color: var(--color-ink-muted);
+  margin-bottom: 48px;
+}
+
+.hero__line {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  color: var(--color-ink-muted);
+  margin-bottom: 20px;
+}
+
+.hero__tagline-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.hero__tagline {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  color: var(--color-ink-muted);
+}
+
+/* Inline group that keeps "legos" + the lego icon together as one
+   unbreakable unit, so the icon never falls to its own line. Same
+   pattern as .hero__title-name. */
+.hero__tagline-end {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Generic inline nowrap helper — used to keep "@ uc davis" together
+   so the cs+psych line wraps cleanly to a second row instead of
+   breaking in the middle of "uc davis". */
+.hero__nowrap {
+  white-space: nowrap;
+}
+
+.hero__lego {
+  height: 44px;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+ * Mobile (≤480px).
+ *
+ * On mobile we opt out of the design-canvas transform entirely and
+ * use real px values. The canvas approach scales everything down
+ * proportionally, which makes the tagline/lego row look right on
+ * tablet but produces unreadably small text on phones.
+ *
+ * Tablet (481–768px) intentionally still uses canvas scaling — the
+ * JSX restructure (greeting span on its own line, name+portrait kept
+ * together as inline-flex) handles the title wrap there.
+ * ─────────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .design-canvas--hero {
+    transform: none;
+    margin-bottom: 0;
+  }
+
+  .hero {
+    padding-top: 24px;
+    padding-bottom: 32px;
+  }
+
+  /* Force the title to break after "Hey, I'm" so the name + portrait
+     drop to a second line together. */
+  .hero__title-greeting {
+    display: block;
+  }
+
+  .hero__title {
+    font-size: 56px;
+    line-height: 1.1;
+  }
+
+  .hero__title-name {
+    gap: 10px;
+  }
+
+  .hero__portrait {
+    width: 72px;
+    height: 72px;
+  }
+
+  .hero__location {
+    font-size: 18px;
+    margin-bottom: 28px;
+  }
+
+  .hero__line {
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+
+  .hero__tagline {
+    font-size: 18px;
+  }
+
+  .hero__tagline-row {
+    gap: 12px;
+  }
+
+  .hero__lego {
+    height: 30px;
+  }
+}

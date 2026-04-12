@@ -29,6 +29,21 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
+  // Responsive design-canvas scale: 1 at >=1280px, shrinks proportionally
+  // down to a floor of 0.5 so visually-composed sections (Hero/Timeline/About)
+  // stay pixel-correct without needing media queries inside every component.
+  useEffect(() => {
+    const DESIGN_WIDTH = 1280;
+    const MIN_SCALE = 0.5;
+    const updateScale = () => {
+      const scale = Math.max(MIN_SCALE, Math.min(1, window.innerWidth / DESIGN_WIDTH));
+      document.documentElement.style.setProperty('--canvas-scale', String(scale));
+    };
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale);
+  }, []);
+
   function handleNavigate(page: Page) {
     const url = page === 'home' ? '/' : `/${page}`;
     window.history.pushState(null, '', url);

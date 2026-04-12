@@ -1,0 +1,47 @@
+/* ═══════════════════════════════════════════════════════════════════
+ * Table of Contents (LEGO blocks).
+ * Per-block margin offsets are computed in JS (they depend on
+ * BLOCK_WIDTH scaling) and stay inline.
+ * ═══════════════════════════════════════════════════════════════════ */
+
+.toc {
+  margin: 8px auto 56px;
+  position: relative;
+}
+
+.lego-row { display: block; text-decoration: none; position: relative; cursor: pointer; }
+.lego-row .lego-face,
+.lego-row .lego-top { fill: var(--color-card); transition: fill 0.18s ease; }
+.lego-row .lego-label { color: #0F0F0F; transition: color 0.18s ease; }
+.lego-row:hover .lego-face,
+.lego-row:hover .lego-top { fill: #0F0F0F; }
+.lego-row:hover .lego-studs path,
+.lego-row:hover .lego-studs line { stroke: var(--color-card); }
+.lego-row:hover .lego-studs path[fill] { fill: #0F0F0F; }
+.lego-row:hover .lego-label { color: var(--color-card); }
+
+.lego-row__number {
+  position: absolute;
+  left: 14%;
+  top: 54%;
+  transform: translate(-50%, -50%) rotate(7deg);
+  transform-origin: center;
+  font-family: var(--font-hand);
+  font-size: 28px;
+  color: var(--color-card);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.lego-row__label {
+  position: absolute;
+  left: 62%;
+  top: 57%;
+  width: 54%;
+  transform-origin: center;
+  font-family: var(--font-hand);
+  font-size: 20px;
+  line-height: 1.15;
+  text-align: center;
+  pointer-events: none;
+}

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { X } from 'lucide-react';
 import { SlantedUnderline } from './SlantedUnderline';
-
-const GH = "'Gloria Hallelujah', cursive";
 
 // ═══════════════════════════════════════════════════════════════════
 // LAYOUT VARIABLES — extracted from Figma "Lego Timeline" group
@@ -12,6 +12,7 @@ const BRICK_HEIGHT   = 221;
 const STEP_A = 108;
 const STEP_B = 142;
 const X_OFFSET = 69;
+const MOBILE_BREAKPOINT = 768;
 
 function getBrickTop(index: number): number {
   const pairs     = Math.floor(index / 2);
@@ -153,6 +154,26 @@ export function Timeline() {
   const snappedBricksRef = useRef<Set<number>>(new Set());
   const audioCtxRef = useRef<AudioContext | null>(null);
   const audioBufferRef = useRef<AudioBuffer | null>(null);
+
+  // On narrow viewports we keep the zigzag layout intact and just
+  // visually shrink the bricks via CSS transform. bricksScale = 1 on
+  // anything wide enough to fit the unscaled 389px container, and
+  // scales down proportionally below that with a 16px gutter on each
+  // side. The transform only kicks in below MOBILE_BREAKPOINT.
+  const containerDesignWidth = BRICK_WIDTH + X_OFFSET; // 389
+  const computeBricksScale = () => {
+    if (typeof window === 'undefined') return 1;
+    if (window.innerWidth > MOBILE_BREAKPOINT) return 1;
+    return Math.min(1, (window.innerWidth - 32) / containerDesignWidth);
+  };
+  const [bricksScale, setBricksScale] = useState<number>(computeBricksScale);
+
+  useEffect(() => {
+    const onResize = () => setBricksScale(computeBricksScale());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const ctx = new AudioContext();
@@ -323,33 +344,33 @@ export function Timeline() {
   const activeSnapBrick = getActiveSnapBrick();
 
   return (
-    <section ref={sectionRef} style={{ paddingLeft: '120px', minHeight: animComplete ? undefined : scrollHeight }}>
-      <div style={animComplete ? { paddingTop: '48px', paddingBottom: '48px' } : { position: 'sticky', top: '0px', paddingTop: '48px', paddingBottom: '48px' }}>
+    <section
+      ref={sectionRef}
+      className="timeline"
+      style={{ minHeight: animComplete ? undefined : scrollHeight }}
+    >
+      <div className={`timeline__inner${animComplete ? '' : ' timeline__inner--sticky'}`}>
         {/* Header */}
-        <div style={{ marginBottom: '60px' }}>
-          <h2
-            style={{
-              fontFamily: GH,
-              fontSize: '72px',
-              lineHeight: 1.1,
-              marginBottom: '16px',
-            }}
-          >
+        <div className="timeline__header">
+          <h2 className="timeline__title">
             <SlantedUnderline>Timeline</SlantedUnderline>
           </h2>
         </div>
 
         {/* Two-column: brick stack left, sticky tooltip right */}
-        <div style={{ display: 'flex', gap: '250px', alignItems: 'flex-start' }}>
+        <div className="timeline__columns">
 
-          {/* Brick stack */}
+          {/* Brick stack — visually scaled on narrow viewports.
+              Layout box matches the scaled visual size so the parent
+              flex column doesn't overflow. */}
           <div
+            className="timeline__bricks"
             style={{
-              position: 'relative',
-              width: containerWidth,
-              height: containerHeight,
-              flexShrink: 0,
-              marginTop: '20px',
+              width: containerWidth * bricksScale,
+              height: containerHeight * bricksScale,
+              ...(bricksScale < 1
+                ? { transform: `scale(${bricksScale})`, transformOrigin: 'top left' }
+                : null),
             }}
           >
             {timelineData.map((item, index) => {
@@ -363,11 +384,11 @@ export function Timeline() {
                 <div
                   key={item.company}
                   data-brick={item.company.toLowerCase().replace(/\s+/g, '-')}
+                  className="timeline__brick"
                   onMouseEnter={() => (animComplete && visible) ? setHoveredIndex(index) : undefined}
                   onMouseLeave={() => setHoveredIndex(null)}
                   onClick={() => (animComplete && visible) ? setClickedIndex(index) : undefined}
                   style={{
-                    position: 'absolute',
                     top: animatedTop,
                     left,
                     width: BRICK_WIDTH,
@@ -378,17 +399,7 @@ export function Timeline() {
                     pointerEvents: visible ? 'auto' : 'none',
                   }}
                 >
-                  <img
-                    src={item.image}
-                    alt={item.company}
-                    draggable={false}
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      height: '100%',
-                      userSelect: 'none',
-                    }}
-                  />
+                  <img src={item.image} alt={item.company} draggable={false} />
                 </div>
               );
             })}
@@ -396,14 +407,11 @@ export function Timeline() {
             {/* Snap impact lines overlay */}
             {activeSnapBrick !== null && (
               <svg
+                className="timeline__snap-svg"
                 style={{
-                  position: 'absolute',
-                  top: 0,
                   left: -30,
                   width: containerWidth + 60,
                   height: containerHeight + 100,
-                  pointerEvents: 'none',
-                  overflow: 'visible',
                 }}
               >
                 <SnapLinesSVG
@@ -417,75 +425,76 @@ export function Timeline() {
           </div>
 
           {/* Right column: big subtitle + tooltip */}
-          <div style={{ flex: 1, minWidth: 0, position: animComplete ? 'sticky' : undefined, top: animComplete ? '100px' : undefined, alignSelf: 'flex-start' }}>
-            <p
-              style={{
-                fontFamily: GH,
-                fontSize: '48px',
-                lineHeight: 1.2,
-                marginBottom: '32px',
-              }}
-            >
+          <div className={`timeline__right${animComplete ? ' timeline__right--sticky' : ''}`}>
+            <p className="timeline__subtitle">
               Scroll to watch me<br />build my career!
             </p>
             <img
               src="/assets/arrow_loop.png"
               alt=""
-              style={{
-                width: '85px',
-                display: 'block',
-                marginLeft: '-90px',
-                marginTop: '215px',
-                transform: 'translateX(-5px) translateY(-125px) rotate(15deg)',
-                marginBottom: '16px',
-                mixBlendMode: 'multiply',
-                opacity: animComplete ? 1 : 0,
-                transition: 'opacity 0.5s ease-in',
-              }}
+              className="timeline__arrow"
+              style={{ opacity: animComplete ? 1 : 0 }}
             />
             <div
-              style={{
-                fontFamily: GH,
-                fontSize: '30px',
-                color: 'black',
-                lineHeight: 1.6,
-                whiteSpace: 'nowrap',
-                marginTop: '-260px',
-                opacity: animComplete ? 1 : 0,
-                transition: 'opacity 0.5s ease-in',
-              }}
+              className="timeline__hint"
+              style={{ opacity: animComplete ? 1 : 0 }}
             >
               click a block to learn more
             </div>
             {(hoveredIndex ?? clickedIndex) !== null && (
-              <div
-                style={{
-                  border: '4px solid black',
-                  padding: '20px',
-                  backgroundColor: '#F6F5F3',
-                  marginTop: '16px',
-                  transform: 'translateY(25px)',
-                  width: '600px',
-                  height: '240px',
-                }}
-              >
-                <div style={{ fontFamily: GH, fontSize: '40px', marginBottom: '2px' }}>
-                  {timelineData[(hoveredIndex ?? clickedIndex)!].company}
+              <>
+                {/* Desktop: tooltip renders inline in the right column */}
+                <div className="timeline__tooltip timeline__tooltip--inline">
+                  <button
+                    type="button"
+                    className="timeline__tooltip-close"
+                    aria-label="Close"
+                    onClick={() => { setHoveredIndex(null); setClickedIndex(null); }}
+                  >
+                    <X size={20} strokeWidth={3} />
+                  </button>
+                  <div className="timeline__tooltip-company">
+                    {timelineData[(hoveredIndex ?? clickedIndex)!].company}
+                  </div>
+                  <div className="timeline__tooltip-role">
+                    {timelineData[(hoveredIndex ?? clickedIndex)!].role}
+                  </div>
+                  <div className="timeline__tooltip-desc">
+                    {timelineData[(hoveredIndex ?? clickedIndex)!].description}
+                  </div>
                 </div>
-                <div
-                  style={{
-                    fontFamily: GH,
-                    fontSize: '30px',
-                    color: '#333',
-                    marginBottom: '10px',
-                  }}
-                >
-                  {timelineData[(hoveredIndex ?? clickedIndex)!].role}
-                </div>
-                <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '20px', color: 'black', lineHeight: 1.5 }}>
-                  {timelineData[(hoveredIndex ?? clickedIndex)!].description}
-                </div>
-              </div>
+
+                {/* Mobile: portal to body so fixed positioning escapes
+                    ancestor transforms (page-enter-delayed animation). */}
+                {createPortal(
+                  <>
+                    <div
+                      className="timeline__tooltip-backdrop"
+                      onClick={() => { setHoveredIndex(null); setClickedIndex(null); }}
+                    />
+                    <div className="timeline__tooltip timeline__tooltip--portal">
+                      <button
+                        type="button"
+                        className="timeline__tooltip-close"
+                        aria-label="Close"
+                        onClick={() => { setHoveredIndex(null); setClickedIndex(null); }}
+                      >
+                        <X size={20} strokeWidth={3} />
+                      </button>
+                      <div className="timeline__tooltip-company">
+                        {timelineData[(hoveredIndex ?? clickedIndex)!].company}
+                      </div>
+                      <div className="timeline__tooltip-role">
+                        {timelineData[(hoveredIndex ?? clickedIndex)!].role}
+                      </div>
+                      <div className="timeline__tooltip-desc">
+                        {timelineData[(hoveredIndex ?? clickedIndex)!].description}
+                      </div>
+                    </div>
+                  </>,
+                  document.body,
+                )}
+              </>
             )}
           </div>
 

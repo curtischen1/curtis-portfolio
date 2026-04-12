@@ -1,0 +1,45 @@
+/* ═══════════════════════════════════════════════════════════════════
+ * Design tokens, shared utilities, and the responsive "design canvas".
+ * Loaded after index.css so these rules take precedence.
+ * ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Fonts */
+  --font-hand: 'Gloria Hallelujah', cursive;
+  --font-serif: Georgia, serif;
+
+  /* Colors */
+  --color-paper: #F1EEE1;
+  --color-card: #F6F5F3;
+  --color-ink: #000;
+  --color-ink-soft: #222;
+  --color-ink-muted: #444;
+  --color-ink-faint: #555;
+
+  /* Design canvas scale — 1 at the design width, shrinks on small screens.
+     Set by JS in App.tsx based on window width. */
+  --canvas-scale: 1;
+}
+
+/* Shared text utility — replaces the duplicated `GH` constant in every component */
+.font-hand { font-family: var(--font-hand); }
+
+/* ───────────────────────────────────────────────────────────────────
+ * Design canvas wrapper (Strategy #1)
+ *
+ * Used by visually-composed sections (Hero, Timeline, About) where
+ * pixel-perfect positioning matters more than text reflow.
+ *
+ * Children keep their original px values — those are now "design pixels"
+ * that get scaled uniformly. The wrapper compensates for the post-scale
+ * height collapse so layout below it stays correct.
+ * ─────────────────────────────────────────────────────────────────── */
+.design-canvas {
+  transform: scale(var(--canvas-scale));
+  transform-origin: top center;
+  /* Each canvas instance sets its own --canvas-design-height inline,
+     so we can reserve the correct post-scale layout height. */
+  margin-bottom: calc(
+    (var(--canvas-design-height, 0px)) * (var(--canvas-scale) - 1)
+  );
+}

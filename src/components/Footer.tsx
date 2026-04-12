@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-const GH = "'Gloria Hallelujah', cursive";
-
 function MailIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -27,14 +25,6 @@ function SubstackIcon() {
   );
 }
 
-function HeartIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="black">
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-    </svg>
-  );
-}
-
 export function Footer() {
   const [copied, setCopied] = useState(false);
 
@@ -45,70 +35,34 @@ export function Footer() {
   }
 
   return (
-    <footer
-      style={{
-        borderTop: '3px solid black',
-        padding: '48px 64px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-      }}
-    >
-      {/* Left side */}
+    <footer className="site-footer">
       <div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
-          <span style={{ fontFamily: GH, fontSize: '44px' }}>Curtis Chen</span>
+        <div className="site-footer__brand">
+          <span className="site-footer__name">Curtis Chen</span>
           <img
             src="/assets/my-notion-face-portrait.svg"
             alt="Curtis Chen"
-            style={{ width: '72px', height: '72px' }}
+            className="site-footer__avatar"
           />
         </div>
-        <p style={{ fontFamily: GH, fontSize: '24px', color: '#000', display: 'flex', alignItems: 'center', gap: '14px' }}>
-          Made with <img src="/assets/Lego Heart.svg" alt="heart" style={{ width: '34px', height: '34px', position: 'relative', top: '-3px' }} />
+        <p className="site-footer__made-with">
+          Made with <img src="/assets/Lego Heart.svg" alt="heart" className="site-footer__heart" />
         </p>
       </div>
 
-      {/* Right side */}
       <div>
-        <p style={{ fontFamily: GH, fontSize: '24px', marginBottom: '16px' }}>Reach Out!</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          <button
-            onClick={handleCopyEmail}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
-              fontFamily: GH,
-              fontSize: '16px',
-              color: '#000',
-            }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.textDecoration = 'underline'; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.textDecoration = 'none'; }}
-          >
+        <p className="site-footer__reach">Reach Out!</p>
+        <div className="site-footer__links">
+          <button onClick={handleCopyEmail} className="site-footer__link">
             <MailIcon />
-            <span style={{ minWidth: '200px', textAlign: 'left' }}>{copied ? 'Copied!' : 'curtischen1@gmail.com'}</span>
+            <span className="site-footer__email-text">{copied ? 'Copied!' : 'curtischen1@gmail.com'}</span>
           </button>
 
           <a
             href="https://www.linkedin.com/in/curtischen1/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              textDecoration: 'none',
-              fontFamily: GH,
-              fontSize: '16px',
-              color: '#000',
-            }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.textDecoration = 'underline'; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.textDecoration = 'none'; }}
+            className="site-footer__link"
           >
             <LinkedInIcon />
             LinkedIn
@@ -118,17 +72,7 @@ export function Footer() {
             href="https://curtischen1.substack.com/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              textDecoration: 'none',
-              fontFamily: GH,
-              fontSize: '16px',
-              color: '#000',
-            }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.textDecoration = 'underline'; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.textDecoration = 'none'; }}
+            className="site-footer__link"
           >
             <SubstackIcon />
             Substack

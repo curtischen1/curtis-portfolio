@@ -1,53 +1,44 @@
 import { MapPin } from 'lucide-react';
 import { SlantedUnderline } from './SlantedUnderline';
 
-const GH = "'Gloria Hallelujah', cursive";
-
 export function Hero() {
   return (
-    <section className="text-center" style={{ paddingTop: '40px', paddingBottom: '64px' }}>
-      {/* Title + portrait */}
-      <div className="flex items-center justify-center gap-3 mb-4">
-        <h1 style={{ fontFamily: GH, fontSize: '96px', lineHeight: 1.15 }}>
-          Hey, I'm <SlantedUnderline thickness={6} animated>Curtis</SlantedUnderline>
-        </h1>
-        <div className="notion-face-bounce" style={{ flexShrink: 0 }}>
-          <img
-            src="/assets/my-notion-face-portrait.svg"
-            alt="Curtis"
-            style={{ width: '160px', height: '160px' }}
-          />
+    <div className="design-canvas design-canvas--hero" style={{ ['--canvas-design-height' as never]: '600px' }}>
+      <section className="hero">
+        <div className="hero__title-row">
+          <h1 className="hero__title">
+            <span className="hero__title-greeting">Hey, I'm</span>{' '}
+            <span className="hero__title-name">
+              <SlantedUnderline thickness={6} animated>Curtis</SlantedUnderline>
+              <span className="notion-face-bounce hero__portrait-wrap">
+                <img
+                  src="/assets/my-notion-face-portrait.svg"
+                  alt="Curtis"
+                  className="hero__portrait"
+                />
+              </span>
+            </span>
+          </h1>
         </div>
-      </div>
 
-      {/* Location */}
-      <div
-        className="flex items-center justify-center gap-2"
-        style={{ fontFamily: GH, fontSize: '26px', color: '#444', marginBottom: '48px' }}
-      >
-        <MapPin className="w-5 h-5" style={{ flexShrink: 0 }} />
-        <span>San Francisco, CA</span>
-      </div>
+        <div className="hero__location">
+          <MapPin className="w-5 h-5" style={{ flexShrink: 0 }} />
+          <span>San Francisco, CA</span>
+        </div>
 
-      {/* Education */}
-      <p
-        style={{ fontFamily: GH, fontSize: '26px', color: '#444' }}
-        className="mb-5"
-      >
-        computer science and psychology @ uc davis
-      </p>
-
-      {/* Tagline + LEGO icon */}
-      <div className="flex items-center justify-center gap-4">
-        <p style={{ fontFamily: GH, fontSize: '26px', color: '#444' }}>
-          building products and legos
+        <p className="hero__line">
+          computer science and psychology{' '}
+          <span className="hero__nowrap">@ uc davis</span>
         </p>
-        <img
-          src="/assets/notion_lego.svg"
-          alt="lego"
-          style={{ height: '44px' }}
-        />
-      </div>
-    </section>
+
+        <p className="hero__tagline">
+          building products and{' '}
+          <span className="hero__tagline-end">
+            legos
+            <img src="/assets/notion_lego.svg" alt="lego" className="hero__lego" />
+          </span>
+        </p>
+      </section>
+    </div>
   );
 }

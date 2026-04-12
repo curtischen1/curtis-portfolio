@@ -144,6 +144,11 @@ function SnapLinesSVG({ brickIndex, top, left, fading }: { brickIndex: number; t
   );
 }
 
+// Touch devices fire mouseenter/mouseleave alongside touch events,
+// causing the tooltip to flicker. Disable hover on non-hover devices.
+const canHover =
+  typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches;
+
 export function Timeline() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [clickedIndex, setClickedIndex] = useState<number | null>(null);
@@ -385,8 +390,8 @@ export function Timeline() {
                   key={item.company}
                   data-brick={item.company.toLowerCase().replace(/\s+/g, '-')}
                   className="timeline__brick"
-                  onMouseEnter={() => (animComplete && visible) ? setHoveredIndex(index) : undefined}
-                  onMouseLeave={() => setHoveredIndex(null)}
+                  onMouseEnter={() => (canHover && animComplete && visible) ? setHoveredIndex(index) : undefined}
+                  onMouseLeave={() => canHover ? setHoveredIndex(null) : undefined}
                   onClick={() => (animComplete && visible) ? setClickedIndex(index) : undefined}
                   style={{
                     top: animatedTop,

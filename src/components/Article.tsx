@@ -52,9 +52,12 @@ export function ArticleView({ article, onBack }: ArticleProps) {
                   ))}
 
                   {section.image && (
-                    <div className="article__image">
+                    <figure className="article__image">
                       <img src={section.image.src} alt={section.image.alt} />
-                    </div>
+                      {section.image.caption && (
+                        <figcaption className="article__image-caption">{section.image.caption}</figcaption>
+                      )}
+                    </figure>
                   )}
 
                   {section.body3 && section.body3.map((paragraph, j) => (

@@ -24,7 +24,7 @@
   position: absolute;
   left: 14%;
   top: 54%;
-  transform: translate(-50%, -50%) rotate(7deg);
+  transform: translate(-50%, -50%) rotate(14deg);
   transform-origin: center;
   font-family: var(--font-hand);
   font-size: 28px;

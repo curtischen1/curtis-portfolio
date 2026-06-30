@@ -12,6 +12,14 @@
   gap: 2rem;
 }
 
+/* Scale the two footer columns up on big monitors, in step with the rest of
+   the page (--up-scale, set in App.tsx). zoom is applied to the columns
+   rather than the full-width footer so they grow in place at each edge
+   instead of overflowing the viewport. */
+.site-footer > div {
+  zoom: var(--up-scale, 1);
+}
+
 .site-footer__brand {
   display: flex;
   align-items: center;

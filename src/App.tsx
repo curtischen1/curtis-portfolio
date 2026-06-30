@@ -29,15 +29,24 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
-  // Responsive design-canvas scale: 1 at >=1280px, shrinks proportionally
-  // down to a floor of 0.5 so visually-composed sections (Hero/Timeline/About)
-  // stay pixel-correct without needing media queries inside every component.
+  // Two responsive scales driven off window width:
+  //  --canvas-scale: 1 at >=1280px, shrinks to a 0.5 floor below that so the
+  //    visually-composed sections (Hero/About) stay pixel-correct on small screens.
+  //  --up-scale: 1 up to 1536px (every laptop renders the "design" layout
+  //    unchanged), then grows so big monitors scale the whole home page up
+  //    uniformly instead of stranding the timeline on the left. Applied via
+  //    CSS `zoom` (not transform) so the timeline's scroll math keeps working.
   useEffect(() => {
     const DESIGN_WIDTH = 1280;
     const MIN_SCALE = 0.5;
+    const UP_THRESHOLD = 1536;
+    const MAX_UP = 1.75;
     const updateScale = () => {
-      const scale = Math.max(MIN_SCALE, Math.min(1, window.innerWidth / DESIGN_WIDTH));
+      const w = window.innerWidth;
+      const scale = Math.max(MIN_SCALE, Math.min(1, w / DESIGN_WIDTH));
       document.documentElement.style.setProperty('--canvas-scale', String(scale));
+      const upScale = Math.max(1, Math.min(MAX_UP, w / UP_THRESHOLD));
+      document.documentElement.style.setProperty('--up-scale', String(upScale));
     };
     updateScale();
     window.addEventListener('resize', updateScale);
@@ -57,7 +66,7 @@ export default function App() {
 
       <main className="px-6 py-4">
         {currentPage === 'home' && (
-          <div key="home" className="max-w-5xl mx-auto">
+          <div key="home" className="home-stage max-w-5xl mx-auto">
             <div className="page-enter">
               <Hero />
             </div>

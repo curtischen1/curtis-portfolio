@@ -20,7 +20,7 @@ export function Work({ onSelectArticle }: WorkProps) {
             className="work__typewriter"
           />
           <p className="work__subtitle">
-            Check out some of my<br />writing...
+            Check out some of<br className="work__br-narrow" /> my <br className="work__br-wide" />writing...
           </p>
         </div>
       </div>

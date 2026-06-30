@@ -19,6 +19,17 @@
   /* Design canvas scale — 1 at the design width, shrinks on small screens.
      Set by JS in App.tsx based on window width. */
   --canvas-scale: 1;
+
+  /* Page up-scale — 1 on laptops, grows on big monitors so the whole home
+     page zooms up uniformly. Set by JS in App.tsx based on window width. */
+  --up-scale: 1;
+}
+
+/* Home page scales up as one unit on large monitors. `zoom` (not transform)
+   is deliberate: it resizes the actual layout box, so the Timeline's
+   getBoundingClientRect-driven scroll animation stays correct. */
+.home-stage {
+  zoom: var(--up-scale, 1);
 }
 
 /* Shared text utility — replaces the duplicated `GH` constant in every component */

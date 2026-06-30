@@ -84,6 +84,17 @@ const REVEAL_ORDER = [7, 6, 5, 4, 3, 2, 1, 0];
 const SCROLL_PER_BRICK = 350; // px of scroll per brick reveal
 const ENTRY_Y = getBrickTop(1); // ~106px, entry point near top
 
+// On big monitors the home page is zoomed up by `--up-scale` (see App.tsx).
+// `zoom` scales the section's real height too, so the scroll distance needed
+// to drive the brick reveal grows by the same factor. Keep these in sync with
+// App.tsx's UP_THRESHOLD / MAX_UP.
+const UP_THRESHOLD = 1536;
+const MAX_UP = 1.75;
+function computeUpScale(): number {
+  if (typeof window === 'undefined') return 1;
+  return Math.max(1, Math.min(MAX_UP, window.innerWidth / UP_THRESHOLD));
+}
+
 // Cartoonish snap impact lines — 3 disconnected fanning lines on each side
 function SnapLinesSVG({ brickIndex, top, left, fading }: { brickIndex: number; top: number; left: number; fading: boolean }) {
   const thisLeft = brickIndex % 2 === 0 ? X_OFFSET : 0;
@@ -219,7 +230,7 @@ export function Timeline() {
       const viewportHeight = window.innerHeight;
 
       const scrollIntoSection = -(sectionTop - viewportHeight * 0.3);
-      const scrollRange = totalBricks * SCROLL_PER_BRICK;
+      const scrollRange = totalBricks * SCROLL_PER_BRICK * computeUpScale();
       const progress = Math.max(0, Math.min(totalBricks, (scrollIntoSection / scrollRange) * totalBricks));
 
       setScrollProgress(progress);

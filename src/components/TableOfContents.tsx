@@ -15,7 +15,10 @@ const SCALE = BLOCK_WIDTH / 280;
 const NEGATIVE_MARGIN = -95.5 * SCALE;
 // Per-block horizontal nudges (index 0 = top block). Positive = right.
 // marginLeft is relative to the container, so values are cumulative.
-const X_NUDGE_BY_INDEX = [0, 1.9, 3.8, 5.7].map((v) => v * SCALE);
+const X_NUDGE_BY_INDEX = [1.9, 3.0, 3.8, 5.7].map((v) => v * SCALE);
+// Per-block vertical nudges (index 0 = top block). Positive = down.
+// Applied as translateY so it doesn't push the blocks below it.
+const Y_NUDGE_BY_INDEX = [-1, -1, 0, 0].map((v) => v * SCALE);
 
 interface Props {
   sections: TocItem[];
@@ -42,6 +45,7 @@ export function TableOfContents({ sections }: Props) {
           style={{
             marginTop: i === 0 ? 0 : NEGATIVE_MARGIN,
             marginLeft: X_NUDGE_BY_INDEX[i] ?? 0,
+            transform: `translateY(${Y_NUDGE_BY_INDEX[i] ?? 0}px)`,
             zIndex: sections.length - i,
           }}
         >

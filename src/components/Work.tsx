@@ -51,6 +51,24 @@ export function Work({ onSelectArticle }: WorkProps) {
             </article>
           ))}
         </div>
+
+        <div className="work__mascot" aria-hidden="true">
+          {/* Small fill for the cream triangle between the tree's bark strands.
+              Sits behind the figure, so the strands mask its edges; nudge its
+              position via left/top in Work.css (.work__root-fill). */}
+          <svg
+            className="work__root-fill"
+            viewBox="0 0 68 116"
+            preserveAspectRatio="none"
+          >
+            <path d="M0 0 L68 4 L36 116 Z" fill="#0F0F0F" />
+          </svg>
+          <img
+            src="/assets/tree_writer_grounded.svg"
+            alt=""
+            className="work__mascot-img"
+          />
+        </div>
       </div>
     </section>
   );

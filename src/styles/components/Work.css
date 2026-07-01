@@ -100,6 +100,44 @@
   line-height: 1.5;
 }
 
+/* Decorative illustration that rests on the footer's top line.
+   margin-top opens a gap below the cards (pushing the footer down); the
+   negative margin-bottom cancels the section (3rem) + main (1rem) bottom
+   padding so the image's base sits flush on the footer line. */
+/* Decorative "writer under the cherry tree" illustration. The ground it sits
+   on is baked into the SVG (a fill traced from the figure's bottom silhouette
+   down to a flat baseline), so its flat base rests cleanly on the footer line.
+   auto left = right-aligned; the calc right margin pulls the figure's right
+   edge out to the viewport edge (minus a 2rem gutter) so it sits as far right
+   as possible without causing horizontal scroll; the negative bottom drops the
+   baked ground line onto the footer line. */
+.work__mascot {
+  position: relative;
+  width: 36rem;
+  margin: 4rem calc(50% - 50vw + 2rem) -6.1rem auto;
+}
+
+.work__mascot-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Cream-triangle fill at the tree root. Sits BEHIND the figure so the bark
+   strands mask its edges. To move it, just change left/top; to resize, width/
+   height. (36rem-wide square figure, so 1% ≈ 0.36rem.) */
+.work__root-fill {
+  position: absolute;
+  left: 77%;
+  top: 85.6%;
+  width: 0.82rem;
+  height: 1.38rem;
+  transform: rotate(120deg);
+  z-index: 0; /* behind the figure, so the bark strands mask its edges */
+}
+
 @media (max-width: 768px) {
   .work__title { font-size: 3rem; }
   .work__subtitle { font-size: 1.75rem; }

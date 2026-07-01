@@ -23,7 +23,7 @@
 .lego-row__number {
   position: absolute;
   left: 14%;
-  top: 54%;
+  top: 58%;
   transform: translate(-50%, -50%) rotate(14deg);
   transform-origin: center;
   font-family: var(--font-hand);
